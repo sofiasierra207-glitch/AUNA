@@ -541,7 +541,6 @@ header {
     display: flex;
     flex-wrap: wrap;
     gap: 16px 2%;
-    max-width: 1000px;
 }
 
 /* Tarjeta blanca */
