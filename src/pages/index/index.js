@@ -1,8 +1,6 @@
 //Iconos
-// Dibujo de cada ícono en formato SVG
-const iconComment = '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />';
-const iconHeart = '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />';
-const iconSave = '<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />';
+// Carpeta donde están los archivos de los íconos
+const iconsFolder = "../../assets/icons/";
 
 
 /* 
@@ -19,14 +17,18 @@ function createPostCard(post) {
     let likedClass = "";
     let savedClass = "";
     let saveText = "Save";
+    let heartIcon = "heart.svg";
+    let saveIcon = "save.svg";
 
     if (post.liked) {
         likedClass = "liked";
+        heartIcon = "heart-filled.svg";
     }
 
     if (post.saved) {
         savedClass = "saved";
         saveText = "Saved";
+        saveIcon = "save-filled.svg";
     }
 
     // Crea la etiqueta article de la tarjeta
@@ -54,17 +56,17 @@ function createPostCard(post) {
             <div class="post-interactions">
 
                 <button type="button" class="action-button comment-button" aria-label="Comment">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">${iconComment}</svg>
+                    <img src="${iconsFolder}comment.svg" alt="">
                     <span class="comment-count">${post.comments}</span>
                 </button>
 
                 <button type="button" class="action-button like-button ${likedClass}" aria-label="Like">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">${iconHeart}</svg>
+                    <img src="${iconsFolder}${heartIcon}" alt="" class="like-icon">
                     <span class="like-count">${post.likes}</span>
                 </button>
 
                 <button type="button" class="action-button save-button ${savedClass}">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">${iconSave}</svg>
+                    <img src="${iconsFolder}${saveIcon}" alt="" class="save-icon">
                     <span class="save-text">${saveText}</span>
                 </button>
 
@@ -81,8 +83,10 @@ function createPostCard(post) {
     // Busca los botones y textos que están dentro de esta tarjeta
     const likeButton = card.querySelector(".like-button");
     const likeCount = card.querySelector(".like-count");
+    const likeIcon = card.querySelector(".like-icon");
     const saveButton = card.querySelector(".save-button");
     const saveTextElement = card.querySelector(".save-text");
+    const saveIconElement = card.querySelector(".save-icon");
     const commentButton = card.querySelector(".comment-button");
     const commentCount = card.querySelector(".comment-count");
     const commentBox = card.querySelector(".comment-box");
@@ -95,10 +99,12 @@ function createPostCard(post) {
             post.liked = false;
             post.likes = post.likes - 1;
             likeButton.classList.remove("liked");
+            likeIcon.src = iconsFolder + "heart.svg";
         } else {
             post.liked = true;
             post.likes = post.likes + 1;
             likeButton.classList.add("liked");
+            likeIcon.src = iconsFolder + "heart-filled.svg";
         }
         likeCount.textContent = post.likes;
     });
@@ -109,10 +115,12 @@ function createPostCard(post) {
             post.saved = false;
             saveButton.classList.remove("saved");
             saveTextElement.textContent = "Save";
+            saveIconElement.src = iconsFolder + "save.svg";
         } else {
             post.saved = true;
             saveButton.classList.add("saved");
             saveTextElement.textContent = "Saved";
+            saveIconElement.src = iconsFolder + "save-filled.svg";
         }
     });
 
