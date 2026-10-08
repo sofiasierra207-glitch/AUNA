@@ -129,7 +129,6 @@ header {
 .icon-button img {
     width: 22px;
     height: 22px;
-    
 }
 
 
@@ -416,7 +415,6 @@ header {
     border-radius: 16px;
     background-color: #FFF7F3;
     padding: 14px;
-    margin-bottom: 20px;
     font-size: 12px;
     color: #2C1D25;
 }
@@ -424,6 +422,14 @@ header {
 .create-post textarea:focus {
     border-color: #C2456E;
     outline: none;
+}
+
+/* Mensaje de error en rosado debajo del texto */
+.form-error {
+    min-height: 18px;
+    margin: 4px 0 6px;
+    color: #C2456E;
+    font-size: 11px;
 }
 
 /* Fila con "Content type" y "Topic" */

@@ -1,3 +1,10 @@
+// Usuaria con la sesión abierta (autora de los posts nuevos)
+const currentUser = {
+    user: "@valen.torres",
+    initial: "V",
+    role: "Verified creator"
+};
+
 // Lista de posts del feed (cada post es un objeto)
 const posts = [
     {

@@ -12,11 +12,13 @@
     <!-- Fuentes de AÚNA (Inter y Playfair Display) guardadas en assets -->
     <link rel="stylesheet" href="../../assets/fonts/fonts.css">
 
-    <!-- Estilos de la página -->
+    <!-- Estilos de la página y de los componentes -->
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../../components/posted/posted.css">
 
-    <!-- Datos simulados y JS de la página; defer espera a que cargue el HTML -->
+    <!-- Datos, componentes y JS de la página; defer espera a que cargue el HTML -->
     <script src="data.js" defer></script>
+    <script src="../../components/posted/posted.js" defer></script>
     <script src="index.js" defer></script>
 </head>
 
@@ -158,6 +160,9 @@
                 <!-- Texto del post; va en una sola línea para que se vea el placeholder -->
                 <textarea id="post-text" placeholder="What do you want to share today?"
                     aria-label="What do you want to share today?"></textarea>
+
+                <!-- Mensaje de error si el texto está vacío -->
+                <p class="form-error" id="post-error"></p>
 
                 <!-- Opciones del post -->
                 <div class="post-options">
