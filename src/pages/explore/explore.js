@@ -1,13 +1,15 @@
-// PUBLICACIONES
+// aqui guardo todas las publicaciones en un array de objetos
+// cada objeto es una publicacion con sus datos
+// con esta lista creo las tarjetas desde el js y no las escribo una por una en el html
 const publicaciones = [
     {
-        id: 1,                         // número para identificar cada post
+        id: 1,                         // numero para identificar cada post
         usuario: "@ana.rutas",
         meta: "Places Community · 1h ago",
-        tema: "Places",                // debe ser igual al data-tema del filtro
+        tema: "Places",                // tiene que ser igual al data-tema del filtro
         texto: "Map of lit bike paths in the north. We built it together — add yours.",
         imagen: "../../assets/images/ana-rutas.png",
-        descripcionImagen: "Lit bike path at sunset",  // se usa como alt de la imagen
+        descripcionImagen: "Lit bike path at sunset",  // lo uso como alt de la imagen
         comentarios: 62,
         likes: 418
     },
@@ -69,69 +71,73 @@ const publicaciones = [
 ];
 
 
-// aqui se traen los elementos del HTML que se van a usar en el JS
-const gridPosts = document.getElementById("grid-posts");          // div vacío donde van las tarjetas
-const sinResultados = document.getElementById("sin-resultados");  // mensaje "No posts found"
+// traigo los elementos del html que voy a usar
+// getElementById busca uno por su id
+// querySelectorAll me trae todos los que tengan esa clase
+const gridPosts = document.getElementById("grid-posts");          // div vacio donde meto las tarjetas
+const sinResultados = document.getElementById("sin-resultados");  // mensaje de "No posts found"
 const formBuscar = document.getElementById("form-buscar");        // formulario del buscador
-const inputBuscar = document.getElementById("input-buscar");      // donde se escribe
+const inputBuscar = document.getElementById("input-buscar");      // donde se escribe la busqueda
 const botonesFiltro = document.querySelectorAll(".filtro");       // los 7 botones de filtro
-const btnCargarMas = document.getElementById("btn-cargar-mas");   // botón "Load more posts"
+const btnCargarMas = document.getElementById("btn-cargar-mas");   // boton de "Load more posts"
 
 
-// LOCALSTORAGE (guardar likes y guardados)
-const likesKey = "aunaLikes";         // nombre con el que se guardan los likes
-const guardadosKey = "aunaGuardados"; // nombre con el que se guardan los "Save"
+// localStorage: aqui guardo los likes y los guardados
+// asi no se borran cuando recargo la pagina
+const likesKey = "aunaLikes";         // nombre con el que guardo los likes
+const guardadosKey = "aunaGuardados"; // nombre con el que guardo los "Save"
 
-// leer lo que ya estaba guardado.
-// || [] significa: "si no hay nada guardado, empieza con un array vacío"
-// let (y no const) porque estos arrays van a cambiar
+// leo lo que ya tenia guardado
+// JSON.parse convierte el texto otra vez en array
+// || [] es para que si no hay nada guardado empiece con un array vacio
+// uso let porque estos arrays van a cambiar
 let likes = JSON.parse(localStorage.getItem(likesKey)) || [];
 let guardados = JSON.parse(localStorage.getItem(guardadosKey)) || [];
 
 
-// 4. VARIABLES DE ESTADO
-//Guardan "cómo está" la página en este momento.
-let temaActual = "All";   // filtro seleccionado (empieza en All)
-let textoBuscado = "";    // lo que se escribió en el buscador
+// variables para saber como esta la pagina en este momento
+let temaActual = "All";   // el filtro que esta seleccionado, empieza en All
+let textoBuscado = "";    // lo que escribi en el buscador
 
-const cantidadInicial = 6;              // cuántos posts se ven al inicio
-let cantidadVisible = cantidadInicial;  // cuántos se están mostrando ahora
-let totalFiltradas = 0;                 // cuántos posts cumplen el filtro
+const cantidadInicial = 6;              // cuantos posts muestro al inicio
+let cantidadVisible = cantidadInicial;  // cuantos estoy mostrando ahora
+let totalFiltradas = 0;                 // cuantos posts cumplen el filtro
 
-// funcion para crear una tarjeta.
-// Recibe UN objeto post y arma su tarjeta con createElement,
-// igual que en el taller de la lista de tareas.
-// Pasos: crear elemento → darle clase/texto → meterlo con appendChild
+
+// funcion para crear una tarjeta
+// recibe un post y armo la tarjeta pieza por pieza con createElement
+// igual que en el taller de la lista de tareas:
+// creo el elemento, le pongo clase o texto y lo meto con appendChild
 function crearTarjeta(post) {
 
-    // --- contenedor de la tarjeta ---
+    // creo la tarjeta y le pongo la clase para que tome el css
     const tarjeta = document.createElement("article");
-    tarjeta.className = "post"; // le pongo la clase para que tome el CSS
+    tarjeta.className = "post";
 
-    // --- imagen de portada ---
+    // creo la imagen de portada con la ruta y el alt que estan en el objeto
     const portada = document.createElement("img");
     portada.className = "post-portada";
-    portada.src = post.imagen;            // ruta de la imagen sacada del objeto
-    portada.alt = post.descripcionImagen; // texto alternativo
-    tarjeta.appendChild(portada);         // meto la imagen dentro de la tarjeta
+    portada.src = post.imagen;
+    portada.alt = post.descripcionImagen;
+    tarjeta.appendChild(portada);
 
-    // --- cuerpo (parte blanca de abajo) ---
+    // creo la parte blanca de abajo de la tarjeta
     const cuerpo = document.createElement("div");
     cuerpo.className = "post-cuerpo";
     tarjeta.appendChild(cuerpo);
 
-    // --- autora: avatar + usuario + meta ---
+    // creo la fila del avatar con el nombre
     const autora = document.createElement("div");
     autora.className = "post-autora";
 
-    // círculo con la inicial
+    // circulo con la inicial del usuario
+    // charAt(1) toma la letra en la posicion 1 porque la 0 es el @
+    // toUpperCase la pone en mayuscula, ej: "@ana.rutas" queda "A"
     const avatar = document.createElement("div");
     avatar.className = "avatar";
-    // charAt(1) toma la letra en la posición 1 (la 0 es el @)
-    // toUpperCase() la pone en mayúscula. Ej: "@ana.rutas" → "A"
     avatar.textContent = post.usuario.charAt(1).toUpperCase();
 
-    // nombre de usuario y texto pequeño debajo
+    // nombre de usuario y el texto pequeño de abajo
     const quien = document.createElement("div");
 
     const usuario = document.createElement("p");
@@ -149,38 +155,38 @@ function crearTarjeta(post) {
     autora.appendChild(quien);
     cuerpo.appendChild(autora);
 
-    // --- tag del tema ---
+    // creo la etiqueta del tema (Places, Wellness...)
     const tag = document.createElement("span");
     tag.className = "post-tag";
     tag.textContent = post.tema;
     cuerpo.appendChild(tag);
 
-    // --- texto de la publicación ---
+    // creo el texto de la publicacion
     const texto = document.createElement("p");
     texto.className = "post-texto";
     texto.textContent = post.texto;
     cuerpo.appendChild(texto);
 
-    // --- fila de acciones ---
+    // creo la fila de abajo donde van comentarios, like y guardar
     const acciones = document.createElement("div");
     acciones.className = "post-acciones";
 
     const metricas = document.createElement("div");
     metricas.className = "post-metricas";
 
-    // comentarios: uso innerHTML porque lleva una imagen + el número.
-    // Las comillas ` ` (backticks) permiten meter variables con ${ }
+    // comentarios: uso innerHTML porque lleva el icono y el numero
+    // con las comillas ` ` puedo meter variables usando ${ }
     const comentarios = document.createElement("span");
     comentarios.className = "post-accion";
     comentarios.innerHTML = `<img src="../../assets/icons/comment.svg" alt="Comments"> ${post.comentarios}`;
     metricas.appendChild(comentarios);
 
-    // botón de like (su contenido lo pone la función pintarLike)
+    // creo el boton del like, lo que tiene adentro lo pone pintarLike
     const btnLike = document.createElement("button");
     btnLike.className = "post-accion btn-like";
     metricas.appendChild(btnLike);
 
-    // botón de guardar (su contenido lo pone la función pintarGuardar)
+    // creo el boton de guardar, lo que tiene adentro lo pone pintarGuardar
     const btnGuardar = document.createElement("button");
     btnGuardar.className = "post-accion btn-guardar";
 
@@ -188,30 +194,30 @@ function crearTarjeta(post) {
     acciones.appendChild(btnGuardar);
     cuerpo.appendChild(acciones);
 
-    // mostrar si el post ya tenía like o estaba guardado
+    // pinto los botones para que se vea si ya tenian like o estaban guardados
     pintarLike(btnLike, post);
     pintarGuardar(btnGuardar, post);
 
-    // click en like
+    // cuando le doy click al like
     btnLike.addEventListener("click", () => {
-        // includes() revisa si el id ya está en el array
+        // includes revisa si el id ya esta en el array de likes
         if (likes.includes(post.id)) {
-            // ya tenía like → lo quito.
-            // filter() crea un array nuevo SIN este id
+            // si ya tenia like se lo quito
+            // filter crea un array nuevo sin este id
             likes = likes.filter(id => id !== post.id);
         } else {
-            // no tenía like → lo agrego al array
+            // si no tenia like lo agrego
             likes.push(post.id);
         }
-        // guardo el array actualizado en localStorage
+        // guardo el array en localStorage
+        // JSON.stringify lo convierte en texto porque localStorage solo guarda texto
         localStorage.setItem(likesKey, JSON.stringify(likes));
-        // vuelvo a pintar el botón con el nuevo estado
+        // vuelvo a pintar el boton para que cambie el corazon
         pintarLike(btnLike, post);
     });
 
-    // click en guardar
-    // funciona igual que el like
-    // Lo guardado se podrá leer después desde la página de Favorites.
+    // cuando le doy click a guardar, funciona igual que el like
+    // lo que guardo aqui lo puedo leer despues en la pagina de favorites
     btnGuardar.addEventListener("click", () => {
         if (guardados.includes(post.id)) {
             guardados = guardados.filter(id => id !== post.id);
@@ -222,139 +228,147 @@ function crearTarjeta(post) {
         pintarGuardar(btnGuardar, post);
     });
 
-    // se mete la tarjeta completa dentro del grid del HTML
+    // por ultimo meto la tarjeta completa en el grid del html
     gridPosts.appendChild(tarjeta);
 }
 
 
 
-//FUNCIONES QUE "PINTAN" LOS BOTONES SEGÚN SU ESTADO
+// con esta funcion cambio el icono y el numero del like
 function pintarLike(boton, post) {
-    // true si el id del post está en el array de likes
+    // reviso si este post ya tiene like
     const tieneLike = likes.includes(post.id);
 
-    // operador ternario:  condición ? valorSiEsTrue : valorSiEsFalse
-    const corazon = tieneLike ? "♥" : "♡";                     // lleno o vacío
-    const total = tieneLike ? post.likes + 1 : post.likes;     // suma 1 si tiene like
+    // si tiene like uso el corazon lleno, si no el vacio
+    let iconoLike = "heart.svg";
+    if (tieneLike) {
+        iconoLike = "heart-filled.svg";
+    }
 
-    boton.innerHTML = `<span class="corazon">${corazon}</span> ${total}`;
+    // si tiene like le sumo 1 al numero
+    const total = tieneLike ? post.likes + 1 : post.likes;
 
-    // classList.toggle("activo", true/false):
-    // si es true agrega la clase "activo" (rosado), si es false la quita
+    boton.innerHTML = `<img src="../../assets/icons/${iconoLike}" alt="Like"> ${total}`;
+
+    // la clase activo lo pone rosado
+    // toggle la agrega si tieneLike es true y la quita si es false
     boton.classList.toggle("activo", tieneLike);
 }
 
+// con esta funcion cambio el icono y el texto de guardar
 function pintarGuardar(boton, post) {
+    // reviso si este post ya esta guardado
     const estaGuardado = guardados.includes(post.id);
 
+    // si esta guardado dice "Saved", si no dice "Save"
     const textoBoton = estaGuardado ? "Saved" : "Save";
+
+    // si esta guardado uso el icono lleno, si no el vacio
     let iconoGuardar = "save.svg";
     if (estaGuardado) {
         iconoGuardar = "save-filled.svg";
     }
-    boton.innerHTML = `<img src="../../assets/icons/${iconoGuardar}" alt=""> ${textoBoton} `;
+
+    boton.innerHTML = `<img src="../../assets/icons/${iconoGuardar}" alt=""> ${textoBoton} `;
     boton.classList.toggle("activo", estaGuardado);
 }
 
-        // 7. FUNCIÓN QUE MUESTRA LAS PUBLICACIONES
-        // Se llama al cargar la página y cada vez que cambia
-        // el filtro, la búsqueda o se da click en "Load more".
-        function mostrarPublicaciones() {
 
-            // 1) borro todas las tarjetas que había para no repetirlas
-            gridPosts.innerHTML = "";
+// con esta funcion muestro las publicaciones
+// la llamo al abrir la pagina y cada vez que cambio el filtro,
+// busco algo o le doy a "Load more"
+function mostrarPublicaciones() {
 
-    // 2) filter() recorre el array y se queda solo con los posts
-    //    que devuelven true
+    // primero borro las tarjetas que habia para que no se repitan
+    gridPosts.innerHTML = "";
+
+    // filter recorre el array y deja solo los posts que cumplen
     const filtradas = publicaciones.filter(post => {
 
-        // pasa si el filtro es "All" O si el tema del post es igual al filtro
+        // pasa si el filtro es All o si el tema del post es igual al filtro
         const coincideTema = temaActual === "All" || post.tema === temaActual;
 
-        // junto usuario + tema + texto en minúsculas y reviso
-        // si contiene lo que se buscó
+        // junto el usuario, el tema y el texto en minusculas
+        // y reviso si tiene lo que busque
         const contenido = (post.usuario + " " + post.tema + " " + post.texto).toLowerCase();
         const coincideTexto = contenido.includes(textoBuscado);
 
-        // && = tienen que cumplirse las DOS condiciones
+        // && significa que se tienen que cumplir las dos cosas
         return coincideTema && coincideTexto;
     });
 
-        // 3) slice(0, cantidadVisible) toma solo los primeros N posts
-        const visibles = filtradas.slice(0, cantidadVisible);
+    // slice toma solo los primeros posts segun cantidadVisible
+    const visibles = filtradas.slice(0, cantidadVisible);
 
-    // 4) forEach recorre cada post y crea su tarjeta
+    // forEach recorre cada post y le creo su tarjeta
     visibles.forEach(post => crearTarjeta(post));
 
-        // 5) si no quedó ningún post, muestro el mensaje; si no, lo escondo
-        if (filtradas.length === 0) {
-            sinResultados.style.display = "block";
+    // si no quedo ningun post muestro el mensaje, si no lo escondo
+    if (filtradas.length === 0) {
+        sinResultados.style.display = "block";
     } else {
-            sinResultados.style.display = "none";
+        sinResultados.style.display = "none";
     }
 
-        // 6) guardo cuántos posts cumplen el filtro (lo usa "Load more")
-        totalFiltradas = filtradas.length;
+    // guardo cuantos posts cumplen el filtro, lo uso en "Load more"
+    totalFiltradas = filtradas.length;
 
-        // 7) dejo el botón "Load more" como al inicio
-        btnCargarMas.disabled = false;
-        btnCargarMas.textContent = "Load more posts";
+    // dejo el boton de "Load more" como al inicio
+    btnCargarMas.disabled = false;
+    btnCargarMas.textContent = "Load more posts";
 }
 
 
-// FILTROS 
-// a cada botón de filtro le agrego un evento click
+// filtros: a cada boton le agrego el evento click
 botonesFiltro.forEach(boton => {
-            boton.addEventListener("click", () => {
+    boton.addEventListener("click", () => {
 
-                // quito la clase activa a TODOS los filtros...
-                botonesFiltro.forEach(b => b.classList.remove("filtro-activo"));
-                // ...y se la pongo solo al que se le dio click
-                boton.classList.add("filtro-activo");
+        // le quito la clase activa a todos los filtros
+        botonesFiltro.forEach(b => b.classList.remove("filtro-activo"));
+        // y se la pongo solo al que le di click
+        boton.classList.add("filtro-activo");
 
-                // dataset.tema lee el atributo data-tema del HTML
-                temaActual = boton.dataset.tema;
-                cantidadVisible = cantidadInicial;
-                mostrarPublicaciones(); // vuelvo a pintar con el nuevo filtro
-            });
-});
-
-// BUSCADOR
-// "submit" pasa al dar click en Search o al presionar Enter
-formBuscar.addEventListener("submit", (evento) => {
-            // por defecto un form recarga la página; preventDefault lo evita
-            evento.preventDefault();
-
-        // trim() quita espacios al inicio y al final
-        // toLowerCase() pasa a minúsculas para que "Park" y "park" sean iguales
-        textoBuscado = inputBuscar.value.trim().toLowerCase();
+        // dataset.tema lee el data-tema que puse en el html
+        temaActual = boton.dataset.tema;
         cantidadVisible = cantidadInicial;
-        mostrarPublicaciones();
+        mostrarPublicaciones(); // vuelvo a mostrar con el nuevo filtro
+    });
 });
 
-// "input" pasa cada vez que se escribe o se borra una letra.
-// Si el buscador queda vacío, vuelven a aparecer todas las publicaciones.
+// buscador: submit pasa cuando le doy click a Search o presiono Enter
+formBuscar.addEventListener("submit", (evento) => {
+    // el form por defecto recarga la pagina, con preventDefault lo evito
+    evento.preventDefault();
+
+    // trim quita los espacios del inicio y del final
+    // toLowerCase lo pasa a minusculas para que "Park" y "park" sean iguales
+    textoBuscado = inputBuscar.value.trim().toLowerCase();
+    cantidadVisible = cantidadInicial;
+    mostrarPublicaciones();
+});
+
+// input pasa cada vez que escribo o borro una letra
+// si dejo el buscador vacio vuelven a salir todas las publicaciones
 inputBuscar.addEventListener("input", () => {
     if (inputBuscar.value.trim() === "") {
-            textoBuscado = "";
+        textoBuscado = "";
         mostrarPublicaciones();
     }
 });
 
-// cargar mas posts
+// boton de cargar mas
 btnCargarMas.addEventListener("click", () => {
     if (cantidadVisible < totalFiltradas) {
-            // todavía hay posts escondidos → muestro 3 más
-            cantidadVisible = cantidadVisible + 3;
+        // si todavia hay posts escondidos muestro 3 mas
+        cantidadVisible = cantidadVisible + 3;
         mostrarPublicaciones();
     } else {
-            // ya se ven todos → desactivo el botón y cambio el texto
-            btnCargarMas.disabled = true;
+        // si ya se ven todos desactivo el boton y cambio el texto
+        btnCargarMas.disabled = true;
         btnCargarMas.textContent = "You're all caught up";
     }
 });
 
 
-        //INICIO
-        // Al abrir la página se llama la función para pintar las tarjetas
-        mostrarPublicaciones();
+// cuando abro la pagina llamo la funcion para que salgan las tarjetas
+mostrarPublicaciones();
