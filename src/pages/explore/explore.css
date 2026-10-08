@@ -1,21 +1,18 @@
-/*:root guarda los colores del Figma en variables.
-   Así escribo var(--rosa-principal) en vez de #c2456e cada vez,
-   y si un color cambia, solo lo cambio aquí */
+/* colores del figma */
 :root {
-    --rosa-principal: #c2456e;   /* botones, links, textos rosados */
-    --rosa-suave: #f7d9e3;       /* fondo del menú activo y avatares */
-    --rosa-claro: #fdedf1;       /* fondo de tarjetas claras */
-    --fondo-pagina: #fff7f3;     /* color crema del fondo */
+    --rosa-principal: #c2456e;
+    --rosa-suave: #f7d9e3;
+    --rosa-claro: #fdedf1;
+    --fondo-pagina: #fff7f3;
     --blanco: #ffffff;
-    --borde: #f1dfe4;            /* bordes suaves */
-    --texto-principal: #2c1d25;  /* títulos (casi negro) */
-    --texto-secundario: #6e5a63; /* textos grises */
-    --morado-oscuro: #3b2430;    /* tarjeta oscura */
+    --borde: #f1dfe4;
+    --borde-boton: #d8ccd0;
+    --texto-principal: #2c1d25;
+    --texto-secundario: #6e5a63;
+    --morado-oscuro: #3b2430;
 }
 
-/* Reset: quita márgenes por defecto del navegador.
-   box-sizing: border-box hace que el padding y el borde
-   se incluyan dentro del ancho (modelo de caja más fácil) */
+/* quitar margenes por defecto */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -23,26 +20,28 @@
 }
 
 body {
-    font-family: "Inter", Arial, sans-serif; /* si Inter no carga, usa Arial */
+    font-family: "Inter", Arial, sans-serif;
     background-color: var(--fondo-pagina);
     color: var(--texto-principal);
 }
 
-/* links sin subrayado y con el color del texto que los rodea */
 a {
     text-decoration: none;
     color: inherit;
 }
 
-/* botones sin el estilo gris que trae el navegador */
+/* quitar estilo gris de los botones */
 button {
-    font-family: inherit; /* usa la misma fuente del body */
-    cursor: pointer;      /* manito al pasar el mouse */
+    font-family: inherit;
+    cursor: pointer;
     border: none;
     background: none;
 }
 
-/* todos los títulos usan Playfair Display */
+img {
+    max-width: 100%;
+}
+
 h1,
 h2,
 h3 {
@@ -51,52 +50,41 @@ h3 {
 }
 
 
-/* =========================================================
-   HEADER
-   ========================================================= */
+/* header */
 .header {
     background-color: var(--blanco);
     border-bottom: 1px solid var(--borde);
-    padding: 20px 80px; /* 20px arriba/abajo, 80px a los lados */
-
-    /* flexbox: pone logo, menú y botones en una fila */
+    height: 96px;
+    padding: 0 80px;
     display: flex;
-    justify-content: space-between; /* separa los 3 grupos al máximo */
-    align-items: center;            /* los centra verticalmente */
-}
-
-/* logo: imagen y texto lado a lado */
-.logo {
-    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px; /* espacio entre imagen y texto */
 }
 
 .logo img {
     height: 56px;
     width: auto;
+    display: block;
 }
 
-/* menú en fila */
 .nav {
     display: flex;
     gap: 8px;
 }
 
 .nav a {
-    padding: 10px 16px;
-    border-radius: 999px; /* 999px = bordes totalmente redondos (forma de píldora) */
-    font-size: 15px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 14px;
     font-weight: 500;
     color: var(--texto-secundario);
 }
 
-/* :hover = cuando el mouse pasa por encima */
 .nav a:hover {
     color: var(--rosa-principal);
 }
 
-/* la página actual: fondo rosado */
+/* pagina en la que estoy */
 .nav .nav-activo {
     background-color: var(--rosa-suave);
     color: var(--rosa-principal);
@@ -104,23 +92,35 @@ h3 {
 
 .header-botones {
     display: flex;
-    gap: 10px;
+    gap: 12px;
+}
+
+/* botones redondos del header */
+.btn-circulo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--borde-boton);
+    background-color: var(--blanco);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-circulo:hover {
+    background-color: var(--rosa-suave);
+    border-color: var(--rosa-suave);
 }
 
 .btn-circulo img {
-    width: 58px;
-    height: 58px;
-    display: block; /* quita un espacio pequeño que dejan las imágenes debajo */
+    width: 22px;
+    height: 22px;
 }
 
 
-/* =========================================================
-   HERO (título + buscador + filtros)
-   ========================================================= */
+/* hero */
 .hero {
-    padding: 64px 80px 40px; /* arriba 64, lados 80, abajo 40 */
-
-    /* elementos uno debajo del otro con 22px entre ellos */
+    padding: 64px 80px 40px;
     display: flex;
     flex-direction: column;
     gap: 22px;
@@ -129,13 +129,13 @@ h3 {
 .etiqueta {
     font-size: 12px;
     font-weight: 600;
-    letter-spacing: 1.2px; /* espacio entre letras */
+    letter-spacing: 1.2px;
     color: var(--rosa-principal);
 }
 
 .hero h1 {
     font-size: 46px;
-    line-height: 54px; /* altura de cada línea del texto */
+    line-height: 54px;
 }
 
 .hero-texto {
@@ -145,20 +145,18 @@ h3 {
 }
 
 
-/* ---------- buscador ---------- */
+/* buscador */
 .buscador {
-    display: flex; /* input y botón en fila */
+    display: flex;
     gap: 12px;
 }
 
-/* la "caja" blanca del buscador (lupa + input) */
 .input-buscar {
-    flex-grow: 1; /* ocupa todo el espacio que sobra (el botón queda a la derecha) */
+    flex-grow: 1;
     background-color: var(--blanco);
     border: 1px solid var(--borde);
     border-radius: 999px;
     padding: 0 22px;
-
     display: flex;
     align-items: center;
     gap: 12px;
@@ -169,11 +167,11 @@ h3 {
     height: 20px;
 }
 
-/* el input real va sin borde porque el borde lo tiene la caja de afuera */
+/* el borde lo tiene la caja de afuera */
 .input-buscar input {
     flex-grow: 1;
     border: none;
-    outline: none; /* quita la línea azul al escribir */
+    outline: none;
     background: none;
     padding: 17px 0;
     font-family: inherit;
@@ -181,17 +179,15 @@ h3 {
     color: var(--texto-principal);
 }
 
-/* color del texto de ayuda (placeholder) */
 .input-buscar input::placeholder {
     color: var(--texto-secundario);
 }
 
-/* :focus-within = cuando se está escribiendo dentro, el borde se pone rosado */
+/* borde rosado cuando escribo */
 .input-buscar:focus-within {
     border-color: var(--rosa-principal);
 }
 
-/* botón rosado (Search) */
 .btn-principal {
     background-color: var(--rosa-principal);
     color: var(--blanco);
@@ -202,14 +198,14 @@ h3 {
 }
 
 .btn-principal:hover {
-    opacity: 0.9; /* se aclara un poquito al pasar el mouse */
+    opacity: 0.9;
 }
 
 
-/* ---------- filtros ---------- */
+/* filtros */
 .filtros {
     display: flex;
-    flex-wrap: wrap; /* si no caben en una línea, bajan a la siguiente */
+    flex-wrap: wrap;
     gap: 12px;
 }
 
@@ -227,7 +223,7 @@ h3 {
     border-color: var(--rosa-principal);
 }
 
-/* el JS le pone esta clase al filtro seleccionado */
+/* filtro seleccionado (lo pone el js) */
 .filtro.filtro-activo {
     background-color: var(--rosa-principal);
     border-color: var(--rosa-principal);
@@ -235,37 +231,31 @@ h3 {
 }
 
 
-/* =========================================================
-   COLECCIONES
-   ========================================================= */
+/* colecciones */
 .colecciones {
     padding: 0 80px 56px;
-
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-/* títulos de sección (comparten estilo) */
 .colecciones h2,
 .publicaciones h2 {
     font-size: 30px;
     line-height: 36px;
 }
 
-/* las 3 tarjetas en fila */
 .colecciones-lista {
     display: flex;
     gap: 24px;
 }
 
+/* texto pegado abajo de la tarjeta */
 .coleccion {
-    flex: 1; /* las 3 tarjetas miden lo mismo */
+    flex: 1;
     height: 200px;
     padding: 28px;
     border-radius: 26px;
-
-    /* contenido de la tarjeta pegado abajo (como en el Figma) */
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -293,7 +283,6 @@ h3 {
     text-decoration: underline;
 }
 
-/* colores de fondo de cada tarjeta */
 .coleccion-rosa-claro {
     background-color: var(--rosa-claro);
 }
@@ -302,7 +291,6 @@ h3 {
     background-color: var(--rosa-suave);
 }
 
-/* tarjeta oscura: los textos van en blanco */
 .coleccion-oscura {
     background-color: var(--morado-oscuro);
     color: var(--blanco);
@@ -310,7 +298,7 @@ h3 {
 
 .coleccion-oscura p {
     color: var(--blanco);
-    opacity: 0.75; /* blanco un poco transparente */
+    opacity: 0.75;
 }
 
 .coleccion-oscura a {
@@ -318,122 +306,110 @@ h3 {
 }
 
 
-/* =========================================================
-   PUBLICACIONES
-   ========================================================= */
+/* publicaciones */
 .publicaciones {
     padding: 0 80px 64px;
-
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
 
-/* "Recent posts" a la izquierda, "Sort by" a la derecha */
 .publicaciones-titulo {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.publicaciones-titulo p {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--texto-secundario);
-}
 
-/* contenedor de las tarjetas */
+/* contenedor de las tarjetas
+   flex-wrap hace que la cuarta tarjeta baje a otra fila
+   gap: 16px entre filas y 2% entre columnas */
 .grid {
     display: flex;
-    flex-wrap: wrap; /* cuando ya hay 3 en la fila, la siguiente baja */
-    gap: 24px;
+    flex-wrap: wrap;
+    gap: 16px 2%;
 }
 
-/* ---------- tarjeta de publicación (la crea el JS) ---------- */
+/* tarjeta (la crea el js) */
 .post {
-    /* 3 columnas: al 100% le resto los 2 espacios de 24px (48px) y divido en 3 */
-    width: calc((100% - 48px) / 3);
+    width: 32%;
     background-color: var(--blanco);
     border: 1px solid var(--borde);
-    border-radius: 24px;
-    overflow: hidden; /* corta la imagen para que respete las esquinas redondas */
-}
-
-.post-portada {
-    width: 100%;
-    height: 230px;
-    object-fit: cover; /* la imagen llena el espacio sin deformarse */
-    display: block;
-    background-color: var(--rosa-claro); /* color mientras carga */
-}
-
-/* parte de abajo de la tarjeta */
-.post-cuerpo {
-    padding: 20px 22px;
-
+    border-radius: 16px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* el tag no se estira a todo el ancho */
-    gap: 14px;
 }
 
-/* avatar + nombre en fila */
+/* object-fit para que la imagen no se deforme */
+.post-portada {
+    width: 100%;
+    height: 176px;
+    object-fit: cover;
+    display: block;
+}
+
+.post-cuerpo {
+    padding: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .post-autora {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+    margin-bottom: 12px;
 }
 
-/* círculo con la letra inicial */
+/* circulo con la inicial */
 .avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%; /* 50% = círculo */
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 50%;
     background-color: var(--rosa-suave);
     color: var(--rosa-principal);
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 600;
-
-    /* centra la letra en el círculo */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .post-usuario {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 600;
 }
 
 .post-meta {
-    font-size: 12px;
+    font-size: 10px;
     color: var(--texto-secundario);
-    margin-top: 2px;
 }
 
-/* etiqueta del tema (Places, Wellness...) */
 .post-tag {
-    background-color: var(--fondo-pagina);
-    border: 1px solid var(--borde);
+    padding: 3px 10px;
+    border: 1px solid var(--rosa-suave);
     border-radius: 999px;
-    padding: 6px 12px;
-    font-size: 12px;
-    font-weight: 600;
     color: var(--rosa-principal);
+    font-size: 10px;
+    font-weight: 500;
+    margin-bottom: 14px;
 }
 
 .post-texto {
-    font-size: 14px;
-    line-height: 22px;
+    font-size: 12px;
+    line-height: 1.6;
     color: var(--texto-secundario);
-    min-height: 44px; /* mínimo 2 líneas para que las tarjetas queden parejas */
+    margin-bottom: 14px;
 }
 
-/* fila de abajo: comentarios + like a la izquierda, guardar a la derecha */
+/* margin-top auto para que quede abajo */
 .post-acciones {
     width: 100%;
-    padding-top: 4px;
-
+    margin-top: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -442,42 +418,43 @@ h3 {
 .post-metricas {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 16px;
 }
 
-/* estilo común de comentarios, like y guardar */
+/* comentarios, like y guardar */
 .post-accion {
     display: flex;
     align-items: center;
-    gap: 7px;
-    font-size: 13px;
+    gap: 6px;
+    font-size: 11px;
     color: var(--texto-secundario);
 }
 
 .post-accion img {
-    width: 18px;
-    height: 18px;
-}
-
-.btn-like {
-    gap: 6px;
+    width: 15px;
+    height: 15px;
 }
 
 .btn-like .corazon {
-    font-size: 16px;
+    font-size: 15px;
+}
+
+.btn-like:hover,
+.btn-guardar:hover {
+    color: var(--rosa-principal);
 }
 
 .btn-guardar {
-    font-weight: 600;
+    font-weight: 500;
 }
 
-/* cuando se da like o se guarda, el JS agrega la clase "activo" y se pone rosado */
+/* like o guardado activo (lo pone el js) */
 .btn-like.activo,
 .btn-guardar.activo {
     color: var(--rosa-principal);
 }
 
-/* mensaje de "no hay resultados": empieza escondido */
+/* mensaje cuando no hay resultados, escondido al inicio */
 .sin-resultados {
     display: none;
     text-align: center;
@@ -485,14 +462,12 @@ h3 {
     padding: 20px;
 }
 
-/* centra el botón "Load more posts" */
 .cargar-mas {
     display: flex;
     justify-content: center;
     padding-top: 16px;
 }
 
-/* botón blanco con borde */
 .btn-secundario {
     background-color: var(--blanco);
     border: 1.5px solid var(--borde);
@@ -507,7 +482,7 @@ h3 {
     border-color: var(--rosa-principal);
 }
 
-/* :disabled = cuando el JS desactiva el botón */
+/* cuando ya no hay mas posts */
 .btn-secundario:disabled {
     cursor: default;
     color: var(--texto-secundario);
@@ -515,14 +490,11 @@ h3 {
 }
 
 
-/* =========================================================
-   FOOTER
-   ========================================================= */
+/* footer */
 .footer {
     background-color: var(--blanco);
     border-top: 1px solid var(--borde);
     padding: 40px 80px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -549,29 +521,29 @@ h3 {
 }
 
 
-/* =========================================================
-   RESPONSIVE (MEDIA QUERIES)
-   Estas reglas solo se aplican cuando la pantalla
-   es más pequeña que el número indicado.
-   ========================================================= */
-
-/* ---------- TABLET (hasta 1024px) ---------- */
+/* tablet */
 @media (max-width: 1024px) {
 
+    /* el menu baja a otra linea */
     .header {
+        height: auto;
         padding: 16px 32px;
-        flex-wrap: wrap; /* permite que el menú baje a otra línea */
+        flex-wrap: wrap;
         gap: 16px;
     }
 
     .nav {
-        order: 3;    /* el menú pasa a ser el último elemento (debajo) */
-        width: 100%; /* ocupa toda la fila */
+        order: 3;
+        width: 100%;
         justify-content: center;
         flex-wrap: wrap;
     }
 
-    /* menos espacio a los lados */
+    .btn-circulo {
+        width: 40px;
+        height: 40px;
+    }
+
     .hero,
     .colecciones,
     .publicaciones {
@@ -584,7 +556,7 @@ h3 {
         line-height: 46px;
     }
 
-    /* colecciones: 2 por fila */
+    /* 2 colecciones por fila */
     .colecciones-lista {
         flex-wrap: wrap;
     }
@@ -593,9 +565,13 @@ h3 {
         flex: 1 1 calc(50% - 12px);
     }
 
-    /* publicaciones: 2 columnas (solo 1 espacio de 24px) */
+    /* 2 tarjetas por fila */
+    .grid {
+        max-width: none;
+    }
+
     .post {
-        width: calc((100% - 24px) / 2);
+        width: 49%;
     }
 
     .footer {
@@ -603,37 +579,36 @@ h3 {
     }
 }
 
-/* ---------- CELULAR (hasta 600px) ---------- */
+/* celular */
 @media (max-width: 600px) {
 
     .header {
         padding: 16px;
     }
 
-    /* logo y botones más pequeños */
     .logo img {
-        width: 44px;
         height: 44px;
     }
 
-    .logo-nombre {
-        font-size: 26px;
+    .btn-circulo {
+        width: 36px;
+        height: 36px;
     }
 
     .btn-circulo img {
-        width: 44px;
-        height: 44px;
+        width: 18px;
+        height: 18px;
     }
 
-    /* el menú se desliza de lado en vez de bajar a varias líneas */
+    /* menu con scroll de lado */
     .nav {
         justify-content: flex-start;
         flex-wrap: nowrap;
-        overflow-x: auto; /* scroll horizontal solo dentro del menú */
+        overflow-x: auto;
     }
 
     .nav a {
-        white-space: nowrap; /* "AÚNA Help" no se parte en 2 líneas */
+        white-space: nowrap;
     }
 
     .hero {
@@ -651,7 +626,7 @@ h3 {
         line-height: 38px;
     }
 
-    /* buscador: input arriba y botón abajo */
+    /* buscador en columna */
     .buscador {
         flex-direction: column;
     }
@@ -660,7 +635,6 @@ h3 {
         padding: 14px;
     }
 
-    /* colecciones una debajo de la otra */
     .colecciones-lista {
         flex-direction: column;
     }
@@ -670,19 +644,17 @@ h3 {
         height: 160px;
     }
 
-    /* "Sort by" debajo del título */
     .publicaciones-titulo {
         flex-direction: column;
         align-items: flex-start;
         gap: 6px;
     }
 
-    /* publicaciones: 1 columna */
+    /* 1 tarjeta por fila */
     .post {
         width: 100%;
     }
 
-    /* footer en columna */
     .footer {
         flex-direction: column;
         align-items: flex-start;
