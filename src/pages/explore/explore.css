@@ -1,0 +1,712 @@
+/*:root guarda los colores del Figma en variables.
+   Así escribo var(--rosa-principal) en vez de #c2456e cada vez,
+   y si un color cambia, solo lo cambio aquí */
+:root {
+    --rosa-principal: #c2456e;   /* botones, links, textos rosados */
+    --rosa-suave: #f7d9e3;       /* fondo del menú activo y avatares */
+    --rosa-claro: #fdedf1;       /* fondo de tarjetas claras */
+    --fondo-pagina: #fff7f3;     /* color crema del fondo */
+    --blanco: #ffffff;
+    --borde: #f1dfe4;            /* bordes suaves */
+    --texto-principal: #2c1d25;  /* títulos (casi negro) */
+    --texto-secundario: #6e5a63; /* textos grises */
+    --morado-oscuro: #3b2430;    /* tarjeta oscura */
+}
+
+/* Reset: quita márgenes por defecto del navegador.
+   box-sizing: border-box hace que el padding y el borde
+   se incluyan dentro del ancho (modelo de caja más fácil) */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Inter", Arial, sans-serif; /* si Inter no carga, usa Arial */
+    background-color: var(--fondo-pagina);
+    color: var(--texto-principal);
+}
+
+/* links sin subrayado y con el color del texto que los rodea */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* botones sin el estilo gris que trae el navegador */
+button {
+    font-family: inherit; /* usa la misma fuente del body */
+    cursor: pointer;      /* manito al pasar el mouse */
+    border: none;
+    background: none;
+}
+
+/* todos los títulos usan Playfair Display */
+h1,
+h2,
+h3 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+.header {
+    background-color: var(--blanco);
+    border-bottom: 1px solid var(--borde);
+    padding: 20px 80px; /* 20px arriba/abajo, 80px a los lados */
+
+    /* flexbox: pone logo, menú y botones en una fila */
+    display: flex;
+    justify-content: space-between; /* separa los 3 grupos al máximo */
+    align-items: center;            /* los centra verticalmente */
+}
+
+/* logo: imagen y texto lado a lado */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* espacio entre imagen y texto */
+}
+
+.logo img {
+    width: 55px;
+    height: 55px;
+}
+
+/* textos del logo uno debajo del otro */
+.logo-texto {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-nombre {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 600;
+    font-size: 33px;
+    color: #49343d;
+    line-height: 1;
+}
+
+.logo-slogan {
+    font-family: "Montserrat", Arial, sans-serif;
+    font-size: 12px;
+    color: #b45e69;
+}
+
+/* menú en fila */
+.nav {
+    display: flex;
+    gap: 8px;
+}
+
+.nav a {
+    padding: 10px 16px;
+    border-radius: 999px; /* 999px = bordes totalmente redondos (forma de píldora) */
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--texto-secundario);
+}
+
+/* :hover = cuando el mouse pasa por encima */
+.nav a:hover {
+    color: var(--rosa-principal);
+}
+
+/* la página actual: fondo rosado */
+.nav .nav-activo {
+    background-color: var(--rosa-suave);
+    color: var(--rosa-principal);
+}
+
+.header-botones {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-circulo img {
+    width: 58px;
+    height: 58px;
+    display: block; /* quita un espacio pequeño que dejan las imágenes debajo */
+}
+
+
+/* =========================================================
+   HERO (título + buscador + filtros)
+   ========================================================= */
+.hero {
+    padding: 64px 80px 40px; /* arriba 64, lados 80, abajo 40 */
+
+    /* elementos uno debajo del otro con 22px entre ellos */
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.etiqueta {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.2px; /* espacio entre letras */
+    color: var(--rosa-principal);
+}
+
+.hero h1 {
+    font-size: 46px;
+    line-height: 54px; /* altura de cada línea del texto */
+}
+
+.hero-texto {
+    font-size: 16px;
+    line-height: 26px;
+    color: var(--texto-secundario);
+}
+
+
+/* ---------- buscador ---------- */
+.buscador {
+    display: flex; /* input y botón en fila */
+    gap: 12px;
+}
+
+/* la "caja" blanca del buscador (lupa + input) */
+.input-buscar {
+    flex-grow: 1; /* ocupa todo el espacio que sobra (el botón queda a la derecha) */
+    background-color: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 999px;
+    padding: 0 22px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.input-buscar img {
+    width: 20px;
+    height: 20px;
+}
+
+/* el input real va sin borde porque el borde lo tiene la caja de afuera */
+.input-buscar input {
+    flex-grow: 1;
+    border: none;
+    outline: none; /* quita la línea azul al escribir */
+    background: none;
+    padding: 17px 0;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--texto-principal);
+}
+
+/* color del texto de ayuda (placeholder) */
+.input-buscar input::placeholder {
+    color: var(--texto-secundario);
+}
+
+/* :focus-within = cuando se está escribiendo dentro, el borde se pone rosado */
+.input-buscar:focus-within {
+    border-color: var(--rosa-principal);
+}
+
+/* botón rosado (Search) */
+.btn-principal {
+    background-color: var(--rosa-principal);
+    color: var(--blanco);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 17px 34px;
+    border-radius: 999px;
+}
+
+.btn-principal:hover {
+    opacity: 0.9; /* se aclara un poquito al pasar el mouse */
+}
+
+
+/* ---------- filtros ---------- */
+.filtros {
+    display: flex;
+    flex-wrap: wrap; /* si no caben en una línea, bajan a la siguiente */
+    gap: 12px;
+}
+
+.filtro {
+    background-color: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 999px;
+    padding: 10px 22px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--texto-secundario);
+}
+
+.filtro:hover {
+    border-color: var(--rosa-principal);
+}
+
+/* el JS le pone esta clase al filtro seleccionado */
+.filtro.filtro-activo {
+    background-color: var(--rosa-principal);
+    border-color: var(--rosa-principal);
+    color: var(--blanco);
+}
+
+
+/* =========================================================
+   COLECCIONES
+   ========================================================= */
+.colecciones {
+    padding: 0 80px 56px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* títulos de sección (comparten estilo) */
+.colecciones h2,
+.publicaciones h2 {
+    font-size: 30px;
+    line-height: 36px;
+}
+
+/* las 3 tarjetas en fila */
+.colecciones-lista {
+    display: flex;
+    gap: 24px;
+}
+
+.coleccion {
+    flex: 1; /* las 3 tarjetas miden lo mismo */
+    height: 200px;
+    padding: 28px;
+    border-radius: 26px;
+
+    /* contenido de la tarjeta pegado abajo (como en el Figma) */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.coleccion h3 {
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.coleccion p {
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--texto-secundario);
+}
+
+.coleccion a {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--rosa-principal);
+}
+
+.coleccion a:hover {
+    text-decoration: underline;
+}
+
+/* colores de fondo de cada tarjeta */
+.coleccion-rosa-claro {
+    background-color: var(--rosa-claro);
+}
+
+.coleccion-rosa {
+    background-color: var(--rosa-suave);
+}
+
+/* tarjeta oscura: los textos van en blanco */
+.coleccion-oscura {
+    background-color: var(--morado-oscuro);
+    color: var(--blanco);
+}
+
+.coleccion-oscura p {
+    color: var(--blanco);
+    opacity: 0.75; /* blanco un poco transparente */
+}
+
+.coleccion-oscura a {
+    color: var(--blanco);
+}
+
+
+/* =========================================================
+   PUBLICACIONES
+   ========================================================= */
+.publicaciones {
+    padding: 0 80px 64px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* "Recent posts" a la izquierda, "Sort by" a la derecha */
+.publicaciones-titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.publicaciones-titulo p {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--texto-secundario);
+}
+
+/* contenedor de las tarjetas */
+.grid {
+    display: flex;
+    flex-wrap: wrap; /* cuando ya hay 3 en la fila, la siguiente baja */
+    gap: 24px;
+}
+
+/* ---------- tarjeta de publicación (la crea el JS) ---------- */
+.post {
+    /* 3 columnas: al 100% le resto los 2 espacios de 24px (48px) y divido en 3 */
+    width: calc((100% - 48px) / 3);
+    background-color: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 24px;
+    overflow: hidden; /* corta la imagen para que respete las esquinas redondas */
+}
+
+.post-portada {
+    width: 100%;
+    height: 230px;
+    object-fit: cover; /* la imagen llena el espacio sin deformarse */
+    display: block;
+    background-color: var(--rosa-claro); /* color mientras carga */
+}
+
+/* parte de abajo de la tarjeta */
+.post-cuerpo {
+    padding: 20px 22px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* el tag no se estira a todo el ancho */
+    gap: 14px;
+}
+
+/* avatar + nombre en fila */
+.post-autora {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* círculo con la letra inicial */
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* 50% = círculo */
+    background-color: var(--rosa-suave);
+    color: var(--rosa-principal);
+    font-size: 16px;
+    font-weight: 600;
+
+    /* centra la letra en el círculo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-usuario {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.post-meta {
+    font-size: 12px;
+    color: var(--texto-secundario);
+    margin-top: 2px;
+}
+
+/* etiqueta del tema (Places, Wellness...) */
+.post-tag {
+    background-color: var(--fondo-pagina);
+    border: 1px solid var(--borde);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--rosa-principal);
+}
+
+.post-texto {
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--texto-secundario);
+    min-height: 44px; /* mínimo 2 líneas para que las tarjetas queden parejas */
+}
+
+/* fila de abajo: comentarios + like a la izquierda, guardar a la derecha */
+.post-acciones {
+    width: 100%;
+    padding-top: 4px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-metricas {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+/* estilo común de comentarios, like y guardar */
+.post-accion {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    color: var(--texto-secundario);
+}
+
+.post-accion img {
+    width: 18px;
+    height: 18px;
+}
+
+.btn-like {
+    gap: 6px;
+}
+
+.btn-like .corazon {
+    font-size: 16px;
+}
+
+.btn-guardar {
+    font-weight: 600;
+}
+
+/* cuando se da like o se guarda, el JS agrega la clase "activo" y se pone rosado */
+.btn-like.activo,
+.btn-guardar.activo {
+    color: var(--rosa-principal);
+}
+
+/* mensaje de "no hay resultados": empieza escondido */
+.sin-resultados {
+    display: none;
+    text-align: center;
+    color: var(--texto-secundario);
+    padding: 20px;
+}
+
+/* centra el botón "Load more posts" */
+.cargar-mas {
+    display: flex;
+    justify-content: center;
+    padding-top: 16px;
+}
+
+/* botón blanco con borde */
+.btn-secundario {
+    background-color: var(--blanco);
+    border: 1.5px solid var(--borde);
+    border-radius: 999px;
+    padding: 15px 30px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--texto-principal);
+}
+
+.btn-secundario:hover {
+    border-color: var(--rosa-principal);
+}
+
+/* :disabled = cuando el JS desactiva el botón */
+.btn-secundario:disabled {
+    cursor: default;
+    color: var(--texto-secundario);
+    border-color: var(--borde);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.footer {
+    background-color: var(--blanco);
+    border-top: 1px solid var(--borde);
+    padding: 40px 80px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: var(--texto-secundario);
+}
+
+.footer-logo {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--texto-principal);
+    margin-bottom: 6px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 28px;
+    font-weight: 500;
+}
+
+.footer-links a:hover {
+    color: var(--rosa-principal);
+}
+
+
+/* =========================================================
+   RESPONSIVE (MEDIA QUERIES)
+   Estas reglas solo se aplican cuando la pantalla
+   es más pequeña que el número indicado.
+   ========================================================= */
+
+/* ---------- TABLET (hasta 1024px) ---------- */
+@media (max-width: 1024px) {
+
+    .header {
+        padding: 16px 32px;
+        flex-wrap: wrap; /* permite que el menú baje a otra línea */
+        gap: 16px;
+    }
+
+    .nav {
+        order: 3;    /* el menú pasa a ser el último elemento (debajo) */
+        width: 100%; /* ocupa toda la fila */
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    /* menos espacio a los lados */
+    .hero,
+    .colecciones,
+    .publicaciones {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+        line-height: 46px;
+    }
+
+    /* colecciones: 2 por fila */
+    .colecciones-lista {
+        flex-wrap: wrap;
+    }
+
+    .coleccion {
+        flex: 1 1 calc(50% - 12px);
+    }
+
+    /* publicaciones: 2 columnas (solo 1 espacio de 24px) */
+    .post {
+        width: calc((100% - 24px) / 2);
+    }
+
+    .footer {
+        padding: 32px;
+    }
+}
+
+/* ---------- CELULAR (hasta 600px) ---------- */
+@media (max-width: 600px) {
+
+    .header {
+        padding: 16px;
+    }
+
+    /* logo y botones más pequeños */
+    .logo img {
+        width: 44px;
+        height: 44px;
+    }
+
+    .logo-nombre {
+        font-size: 26px;
+    }
+
+    .btn-circulo img {
+        width: 44px;
+        height: 44px;
+    }
+
+    /* el menú se desliza de lado en vez de bajar a varias líneas */
+    .nav {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto; /* scroll horizontal solo dentro del menú */
+    }
+
+    .nav a {
+        white-space: nowrap; /* "AÚNA Help" no se parte en 2 líneas */
+    }
+
+    .hero {
+        padding: 40px 16px 32px;
+    }
+
+    .colecciones,
+    .publicaciones {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+        line-height: 38px;
+    }
+
+    /* buscador: input arriba y botón abajo */
+    .buscador {
+        flex-direction: column;
+    }
+
+    .btn-principal {
+        padding: 14px;
+    }
+
+    /* colecciones una debajo de la otra */
+    .colecciones-lista {
+        flex-direction: column;
+    }
+
+    .coleccion {
+        flex: none;
+        height: 160px;
+    }
+
+    /* "Sort by" debajo del título */
+    .publicaciones-titulo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    /* publicaciones: 1 columna */
+    .post {
+        width: 100%;
+    }
+
+    /* footer en columna */
+    .footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 32px 16px;
+    }
+}

@@ -1,11 +1,167 @@
 <!DOCTYPE html>
+<!-- lang="en" porque los textos del Figma están en inglés -->
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+    <!-- para que la página sea responsive en celular -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUNA</title>
+    <title>AÚNA | Explore</title>
+
+    <!-- Fuentes del Figma:
+         - Playfair Display: para los títulos
+         - Inter: para los textos normales
+         - Montserrat: solo para "YOUR OWN SPACE" del logo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@400&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="explore.css">
 </head>
+
 <body>
-    
+
+<!-- Barra de arriba con 3 partes: logo | menú | botones redondos-->
+    <header class="header">
+
+        <!-- Logo -->
+        <a href="#" class="logo">
+            <!-- ../../ sube dos carpetas (de explore a pages y de pages a src)
+                 para llegar a la carpeta assets -->
+            <img src="../../assets/icons/logo.png" alt="Logo AÚNA">
+            <div class="logo-texto">
+                <span class="logo-nombre">AÚNA</span>
+                <span class="logo-slogan">YOUR OWN SPACE</span>
+            </div>
+        </a>
+
+        <!-- Menú de navegación. -->
+        <nav class="nav">
+            <a href="#">Home</a>
+            <a href="explore.html" class="nav-activo">Explore</a>
+            <a href="#">Community</a>
+            <a href="../favorites/favorites.html">Favorites</a>
+            <a href="#">AÚNA Help</a>
+        </nav>
+
+        <!-- Botones redondos: buscar, perfil e idioma -->
+        <div class="header-botones">
+            <button class="btn-circulo"><img src="../../assets/icons/btn-search.png" alt="Search"></button>
+            <button class="btn-circulo"><img src="../../assets/icons/btn-profile.png" alt="Profile"></button>
+            <button class="btn-circulo"><img src="../../assets/icons/btn-language.png" alt="Language"></button>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="hero">
+        
+            <p class="etiqueta">EXPLORE</p>
+
+            <h1>Discover what's inspiring the community today</h1>
+
+            <p class="hero-texto">
+                Filter by topic, discover new creators, and save what makes you feel good.
+                Everything you see here comes from verified women in the network.
+            </p>
+
+            <!-- Buscador. -->
+            <form class="buscador" id="form-buscar">
+                <div class="input-buscar">
+                    <!-- alt="" vacío porque la lupa es solo decoración -->
+                    <img src="../../assets/icons/search.png" alt="">
+                    <!-- texto gris que se ve cuando el input está vacío -->
+                    <input type="text" id="input-buscar" placeholder="Search topics, places, or creators">
+                </div>
+                <!-- type="submit" hace que al darle click se envíe el formulario -->
+                <button type="submit" class="btn-principal">Search</button>
+            </form>
+
+            <!-- Filtros por tema -->
+            <div class="filtros" id="filtros">
+                <button class="filtro filtro-activo" data-tema="All">All</button>
+                <button class="filtro" data-tema="Wellness">Wellness</button>
+                <button class="filtro" data-tema="Reading">Reading</button>
+                <button class="filtro" data-tema="Places">Safe places</button>
+                <button class="filtro" data-tema="Creativity">Creativity</button>
+                <button class="filtro" data-tema="Motherhood">Motherhood</button>
+                <!-- &amp; es como se escribe el símbolo & en HTML -->
+                <button class="filtro" data-tema="Study">Study &amp; career</button>
+            </div>
+        </section>
+
+
+        <!-- 3 tarjetas de colores en fila -->
+        <section class="colecciones">
+            <h2>This week's collections</h2>
+
+            <div class="colecciones-lista">
+                <!-- cada tarjeta tiene 2 clases: "coleccion" (forma)
+                     y otra para el color de fondo -->
+                <article class="coleccion coleccion-rosa-claro">
+                    <h3>Safe routes</h3>
+                    <p>48 places verified by users</p>
+                    <!-- &nbsp; es un espacio que no se rompe -->
+                    <a href="#">View collection &nbsp;→</a>
+                </article>
+
+                <article class="coleccion coleccion-rosa">
+                    <h3>Read together</h3>
+                    <p>12 active clubs this month</p>
+                    <a href="#">View collection &nbsp;→</a>
+                </article>
+
+                <article class="coleccion coleccion-oscura">
+                    <h3>Voices that support you</h3>
+                    <p>Stories of care and mental health</p>
+                    <a href="#">View collection &nbsp;→</a>
+                </article>
+            </div>
+        </section>
+
+
+        <!-- publicaciones -->
+        <section class="publicaciones">
+
+            <div class="publicaciones-titulo">
+                <h2>Recent posts</h2>
+                <p>Sort by: most recent</p>
+            </div>
+
+            <!-- Este div empieza VACÍO.
+                 El JS crea las tarjetas de las publicaciones y las mete aquí. -->
+            <div class="grid" id="grid-posts"></div>
+
+            <!-- Mensaje escondido (display: none en el CSS).
+                 El JS lo muestra cuando el filtro o la búsqueda no encuentran nada. -->
+            <p class="sin-resultados" id="sin-resultados">No posts found. Try another topic or word.</p>
+
+            <div class="cargar-mas">
+                <button class="btn-secundario" id="btn-cargar-mas">Load more posts</button>
+            </div>
+        </section>
+
+    </main>
+
+
+    <footer class="footer">
+        <div>
+            <p class="footer-logo">AÚNA</p>
+            <p>Made with care so every woman finds her place.</p>
+        </div>
+
+        <nav class="footer-links">
+            <a href="#">Community</a>
+            <a href="#">Help</a>
+            <a href="explore.html">Explore</a>
+        </nav>
+    </footer>
+
+
+    <!-- El script va al FINAL del body para que, cuando se ejecute,
+         todo el HTML ya exista y el JS pueda encontrarlo con getElementById -->
+    <script src="explore.js"></script>
 </body>
+
 </html>
