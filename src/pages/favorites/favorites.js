@@ -71,15 +71,12 @@ function armarGuardados() {
         });
     });
 
-    // reverse para que lo ultimo que guarde salga primero
-    nuevos.reverse();
-
     // quito del figma los que ya estan guardados desde explore
     // asi no sale el mismo post dos veces
     const delFigma = guardadosFigma.filter(item => !idsGuardados.includes(item.idExplore));
 
-    // concat junta los dos arrays: primero los nuevos y despues los del figma
-    return nuevos.concat(delFigma);
+    // junto las dos listas en una: primero las del figma y al final las que guarde en explore. concat sigue el orden del figma, que es el que se ve en el diseño
+    return delFigma.concat(nuevos);
 }
 
 const todosLosGuardados = armarGuardados();
