@@ -172,7 +172,7 @@ function crearTarjeta(post) {
     // Las comillas ` ` (backticks) permiten meter variables con ${ }
     const comentarios = document.createElement("span");
     comentarios.className = "post-accion";
-    comentarios.innerHTML = `<img src="../../assets/icons/comment.png" alt="Comments"> ${post.comentarios}`;
+    comentarios.innerHTML = `<img src="../../assets/icons/comment.svg" alt="Comments"> ${post.comentarios}`;
     metricas.appendChild(comentarios);
 
     // botón de like (su contenido lo pone la función pintarLike)
@@ -248,17 +248,21 @@ function pintarGuardar(boton, post) {
     const estaGuardado = guardados.includes(post.id);
 
     const textoBoton = estaGuardado ? "Saved" : "Save";
-    boton.innerHTML = `<img src="../../assets/icons/bookmark.png" alt=""> ${textoBoton}`;
+    let iconoGuardar = "save.svg";
+    if (estaGuardado) {
+        iconoGuardar = "save-filled.svg";
+    }
+    boton.innerHTML = `<img src="../../assets/icons/${iconoGuardar}" alt=""> ${textoBoton} `;
     boton.classList.toggle("activo", estaGuardado);
 }
 
-// 7. FUNCIÓN QUE MUESTRA LAS PUBLICACIONES
-// Se llama al cargar la página y cada vez que cambia
-// el filtro, la búsqueda o se da click en "Load more".
-function mostrarPublicaciones() {
+        // 7. FUNCIÓN QUE MUESTRA LAS PUBLICACIONES
+        // Se llama al cargar la página y cada vez que cambia
+        // el filtro, la búsqueda o se da click en "Load more".
+        function mostrarPublicaciones() {
 
-    // 1) borro todas las tarjetas que había para no repetirlas
-    gridPosts.innerHTML = "";
+            // 1) borro todas las tarjetas que había para no repetirlas
+            gridPosts.innerHTML = "";
 
     // 2) filter() recorre el array y se queda solo con los posts
     //    que devuelven true
@@ -276,63 +280,63 @@ function mostrarPublicaciones() {
         return coincideTema && coincideTexto;
     });
 
-    // 3) slice(0, cantidadVisible) toma solo los primeros N posts
-    const visibles = filtradas.slice(0, cantidadVisible);
+        // 3) slice(0, cantidadVisible) toma solo los primeros N posts
+        const visibles = filtradas.slice(0, cantidadVisible);
 
     // 4) forEach recorre cada post y crea su tarjeta
     visibles.forEach(post => crearTarjeta(post));
 
-    // 5) si no quedó ningún post, muestro el mensaje; si no, lo escondo
-    if (filtradas.length === 0) {
-        sinResultados.style.display = "block";
+        // 5) si no quedó ningún post, muestro el mensaje; si no, lo escondo
+        if (filtradas.length === 0) {
+            sinResultados.style.display = "block";
     } else {
-        sinResultados.style.display = "none";
+            sinResultados.style.display = "none";
     }
 
-    // 6) guardo cuántos posts cumplen el filtro (lo usa "Load more")
-    totalFiltradas = filtradas.length;
+        // 6) guardo cuántos posts cumplen el filtro (lo usa "Load more")
+        totalFiltradas = filtradas.length;
 
-    // 7) dejo el botón "Load more" como al inicio
-    btnCargarMas.disabled = false;
-    btnCargarMas.textContent = "Load more posts";
+        // 7) dejo el botón "Load more" como al inicio
+        btnCargarMas.disabled = false;
+        btnCargarMas.textContent = "Load more posts";
 }
 
 
 // FILTROS 
 // a cada botón de filtro le agrego un evento click
 botonesFiltro.forEach(boton => {
-    boton.addEventListener("click", () => {
+            boton.addEventListener("click", () => {
 
-        // quito la clase activa a TODOS los filtros...
-        botonesFiltro.forEach(b => b.classList.remove("filtro-activo"));
-        // ...y se la pongo solo al que se le dio click
-        boton.classList.add("filtro-activo");
+                // quito la clase activa a TODOS los filtros...
+                botonesFiltro.forEach(b => b.classList.remove("filtro-activo"));
+                // ...y se la pongo solo al que se le dio click
+                boton.classList.add("filtro-activo");
 
-        // dataset.tema lee el atributo data-tema del HTML
-        temaActual = boton.dataset.tema;
-        cantidadVisible = cantidadInicial;
-        mostrarPublicaciones(); // vuelvo a pintar con el nuevo filtro
-    });
+                // dataset.tema lee el atributo data-tema del HTML
+                temaActual = boton.dataset.tema;
+                cantidadVisible = cantidadInicial;
+                mostrarPublicaciones(); // vuelvo a pintar con el nuevo filtro
+            });
 });
 
 // BUSCADOR
 // "submit" pasa al dar click en Search o al presionar Enter
 formBuscar.addEventListener("submit", (evento) => {
-    // por defecto un form recarga la página; preventDefault lo evita
-    evento.preventDefault();
+            // por defecto un form recarga la página; preventDefault lo evita
+            evento.preventDefault();
 
-    // trim() quita espacios al inicio y al final
-    // toLowerCase() pasa a minúsculas para que "Park" y "park" sean iguales
-    textoBuscado = inputBuscar.value.trim().toLowerCase();
-    cantidadVisible = cantidadInicial;
-    mostrarPublicaciones();
+        // trim() quita espacios al inicio y al final
+        // toLowerCase() pasa a minúsculas para que "Park" y "park" sean iguales
+        textoBuscado = inputBuscar.value.trim().toLowerCase();
+        cantidadVisible = cantidadInicial;
+        mostrarPublicaciones();
 });
 
 // "input" pasa cada vez que se escribe o se borra una letra.
 // Si el buscador queda vacío, vuelven a aparecer todas las publicaciones.
 inputBuscar.addEventListener("input", () => {
     if (inputBuscar.value.trim() === "") {
-        textoBuscado = "";
+            textoBuscado = "";
         mostrarPublicaciones();
     }
 });
@@ -340,17 +344,17 @@ inputBuscar.addEventListener("input", () => {
 // cargar mas posts
 btnCargarMas.addEventListener("click", () => {
     if (cantidadVisible < totalFiltradas) {
-        // todavía hay posts escondidos → muestro 3 más
-        cantidadVisible = cantidadVisible + 3;
+            // todavía hay posts escondidos → muestro 3 más
+            cantidadVisible = cantidadVisible + 3;
         mostrarPublicaciones();
     } else {
-        // ya se ven todos → desactivo el botón y cambio el texto
-        btnCargarMas.disabled = true;
+            // ya se ven todos → desactivo el botón y cambio el texto
+            btnCargarMas.disabled = true;
         btnCargarMas.textContent = "You're all caught up";
     }
 });
 
 
-//INICIO
-// Al abrir la página se llama la función para pintar las tarjetas
-mostrarPublicaciones();
+        //INICIO
+        // Al abrir la página se llama la función para pintar las tarjetas
+        mostrarPublicaciones();
