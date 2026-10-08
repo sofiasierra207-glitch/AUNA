@@ -16,9 +16,13 @@
 </head>
 
 <body>
-
-    <!-- Botón de prueba que abre la ventana -->
-    <button type="button" onclick="openPostedModal()">Open posted modal</button>
+    <button type="button" id="test-button">Open posted modal</button>
+    <script>
+        // Botón de prueba que abre la ventana
+        document.querySelector("#test-button").addEventListener("click", function () {
+            openPostedModal();
+        });
+    </script>
 
 </body>
 
