@@ -1,11 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <!-- para que la pagina sea responsive en celular -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUNA</title>
+    <title>AÚNA | Favorites</title>
+
+    <!-- fuentes compartidas del proyecto (estan en assets/fonts) -->
+    <link rel="stylesheet" href="../../assets/fonts/fonts.css">
+
+    <!-- css de esta pagina -->
+    <link rel="stylesheet" href="favorites.css">
 </head>
+
 <body>
-    
+
+    <!-- header: logo, menu y botones redondos (igual que en explore) -->
+    <header class="header">
+
+        <!-- la imagen del logo ya trae el texto AÚNA y el slogan -->
+        <a href="../index/index.html" class="logo">
+            <img src="../../assets/images/logoauna.png" alt="Logo AÚNA">
+        </a>
+
+        <!-- menu, nav-activo marca que estoy en favorites -->
+        <nav class="nav">
+            <a href="../index/index.html">Home</a>
+            <a href="../explore/explore.html">Explore</a>
+            <a href="../community/community.html">Community</a>
+            <a href="favorites.html" class="nav-activo">Favorites</a>
+            <a href="../help/help.html">AÚNA Help</a>
+        </nav>
+
+        <!-- botones redondos: buscar, perfil e idioma -->
+        <div class="header-botones">
+            <button class="btn-circulo"><img src="../../assets/icons/search.svg" alt="Search"></button>
+            <button class="btn-circulo"><img src="../../assets/icons/profile.svg" alt="Profile"></button>
+            <button class="btn-circulo"><img src="../../assets/icons/language.svg" alt="Language"></button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- hero: titulo, texto y tabs -->
+        <section class="hero">
+
+            <p class="etiqueta">YOUR SAVED ITEMS</p>
+
+            <h1>Everything you wanted to read again</h1>
+
+            <p class="hero-texto">
+                Everything you save from the feed lands here. Organize it into collections
+                so you can find it when you need it.
+            </p>
+
+            <!-- tabs para filtrar lo guardado (( All 24 )   Posts 12    Places 7    Creators 5)
+                 data-tipo lo uso en el js para saber que mostrar
+                 el numero va en una pastilla (span) -->
+            <div class="tabs">
+                <button class="tab tab-activa" data-tipo="All">All <span class="tab-numero">24</span></button>
+                <button class="tab" data-tipo="Post">Posts <span class="tab-numero">12</span></button>
+                <button class="tab" data-tipo="Place">Places <span class="tab-numero">7</span></button>
+                <button class="tab" data-tipo="Creator">Creators <span class="tab-numero">5</span></button>
+            </div>
+        </section>
+
+
+        <!-- mis colecciones -->
+        <section class="colecciones">
+            <h2>My collections</h2>
+
+            <!-- primera fila: 3 colecciones grandes -->
+            <div class="colecciones-fila">
+                <article class="coleccion coleccion-rosa-claro">
+                    <h3>Safe routes</h3>
+                    <p>8 saved places</p>
+                </article>
+
+                <article class="coleccion coleccion-rosa">
+                    <h3>For slow reading</h3>
+                    <p>12 posts</p>
+                </article>
+
+                <article class="coleccion coleccion-rosa-claro">
+                    <h3>Shady places</h3>
+                    <p>5 spots close to home</p>
+                </article>
+            </div>
+
+            <!-- segunda fila: 3 colecciones mas -->
+            <div class="colecciones-fila">
+                <article class="coleccion coleccion-oscura">
+                    <h3>Voices that support you</h3>
+                    <p>9 saved stories</p>
+                </article>
+
+                <article class="coleccion coleccion-rosa-claro">
+                    <h3>Light recipes</h3>
+                    <p>6 posts</p>
+                </article>
+
+                <article class="coleccion coleccion-rosa">
+                    <h3>Spaces near you</h3>
+                    <p>4 saved places</p>
+                </article>
+            </div>
+        </section>
+
+
+        <!-- guardado recientemente -->
+        <section class="recientes">
+            <h2>Recently saved</h2>
+
+            <!-- este div empieza vacio, el js crea las tarjetas aqui -->
+            <div class="recientes-lista" id="lista-recientes"></div>
+
+            <!-- mensaje escondido, el js lo muestra si no hay nada en esa tab -->
+            <p class="sin-resultados" id="sin-resultados">You haven't saved anything here yet.</p>
+        </section>
+
+    </main>
+
+
+    <!-- footer -->
+    <footer class="footer">
+        <div>
+            <p class="footer-logo">AÚNA</p>
+            <p>Made with care so every woman finds her place.</p>
+        </div>
+
+        <nav class="footer-links">
+            <a href="../community/community.html">Community</a>
+            <a href="../help/help.html">Help</a>
+            <a href="../explore/explore.html">Explore</a>
+        </nav>
+    </footer>
+
+
+    <!-- el script va al final para que el html ya exista cuando se ejecute -->
+    <script src="favorites.js"></script>
 </body>
+
 </html>
