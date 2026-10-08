@@ -2,349 +2,253 @@
 <html lang="en">
 
 <head>
+    <!-- Codificación y tamaño adaptable a celular -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Título de la pestaña -->
     <title>AÚNA</title>
 
+    <!-- Fuentes del diseño: Playfair Display e Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap"
+        rel="stylesheet">
+
+    <!-- Estilos de la página -->
     <link rel="stylesheet" href="index.css">
+
+    <!-- Datos simulados y JS de la página; defer espera a que cargue el HTML -->
+    <script src="data.js" defer></script>
+    <script src="index.js" defer></script>
 </head>
 
 <body>
 
-    <!-- Header -->
+    <!-- ===== Header ===== -->
     <header>
 
         <div class="header">
 
-            <!-- Page logo -->
-            <div class="logo">
+            <!-- Logo que lleva al inicio -->
+            <a href="index.html" class="logo" aria-label="AÚNA home">
+                <img src="../../assets/images/logoauna.png" alt="AÚNA logo">
+            </a>
 
-                <!-- Logo path -->
-                <img src="c:\Users\User\Downloads\logoo.png" alt="AÚNA Logo">
-
-            </div>
-
-            <!-- Navigation -->
-            <nav>
+            <!-- Menú principal; active marca la página actual -->
+            <nav class="main-nav" aria-label="Main navigation">
                 <ul>
-
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#explore">Explore</a></li>
-                    <li><a href="#community">Community</a></li>
-                    <li><a href="#favorites">Favorites</a></li>
-                    <li><a href="#help">AÚNA Help</a></li>
-                    <li><a href="#search">Search</a></li>
-                    <li><a href="#profile">Profile</a></li>
-                    <li><a href="#language">Language</a></li>
-
+                    <li><a href="index.html" class="nav-link active" aria-current="page">Home</a></li>
+                    <li><a href="../explore/explore.html" class="nav-link">Explore</a></li>
+                    <li><a href="../community/community.html" class="nav-link">Community</a></li>
+                    <li><a href="../favorites/favorites.html" class="nav-link">Favorites</a></li>
+                    <li><a href="../help/help.html" class="nav-link">AÚNA Help</a></li>
                 </ul>
             </nav>
+
+            <!-- Botones redondos con íconos -->
+            <div class="header-actions">
+
+                <!-- Botón de búsqueda -->
+                <button type="button" class="icon-button" id="search-button" aria-label="Search">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7" />
+                        <path d="m20 20-3.5-3.5" />
+                    </svg>
+                </button>
+
+                <!-- Botón de perfil -->
+                <button type="button" class="icon-button" id="profile-button" aria-label="Profile">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="8" r="4" />
+                        <path d="M4 21c0-4 3.6-7 8-7s8 3 8 7" />
+                    </svg>
+                </button>
+
+                <!-- Botón de idioma -->
+                <button type="button" class="icon-button" id="language-button" aria-label="Change language">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m5 8 6 6" />
+                        <path d="m4 14 6-6 2-3" />
+                        <path d="M2 5h12" />
+                        <path d="M7 2h1" />
+                        <path d="m22 22-5-10-5 10" />
+                        <path d="M14 18h6" />
+                    </svg>
+                </button>
+
+            </div>
 
         </div>
 
     </header>
 
 
-    <!-- Main content -->
+    <!-- Menú inferior, solo visible en celular -->
+    <nav class="bottom-nav" aria-label="Mobile navigation">
+        <a href="index.html" class="bottom-link active" aria-current="page"><span class="dot"></span>Home</a>
+        <a href="../explore/explore.html" class="bottom-link"><span class="dot"></span>Explore</a>
+        <a href="../community/community.html" class="bottom-link"><span class="dot"></span>Community</a>
+        <a href="../favorites/favorites.html" class="bottom-link"><span class="dot"></span>Favorites</a>
+        <a href="../help/help.html" class="bottom-link"><span class="dot"></span>Help</a>
+    </nav>
+
+
+    <!-- Contenido principal -->
     <main>
 
-        <!-- Hero section -->
+        <!-- ===== Hero ===== -->
         <section class="hero" id="home">
 
-            <div class="hero-image">
+            <!-- Tarjeta del post destacado -->
+            <article class="hero-card">
 
-                <img src="c:\Users\User\Downloads\hero-image.png" alt="Woman using her phone">
+                <!-- Foto del post -->
+                <img src="../../assets/images/principal.png" alt="Creator taking a selfie while styling her hair"
+                    class="hero-card-image">
 
-            </div>
+                <!-- Avatar, usuario y botón Follow -->
+                <div class="hero-card-author">
+                    <span class="user-avatar">V</span>
+                    <div class="hero-card-info">
+                        <strong>@valen.creativa</strong>
+                        <span>Verified creator</span>
+                    </div>
+                    <button type="button" class="follow-button">Follow</button>
+                </div>
 
+                <!-- Likes y comentarios -->
+                <p class="hero-card-stats">2,448 likes and 186 comments</p>
+
+            </article>
+
+            <!-- Texto de bienvenida -->
             <div class="hero-content">
 
-                <span class="hero-tag">A safe, social community</span>
+                <!-- Etiqueta con punto rosado -->
+                <span class="hero-tag"><span class="dot"></span>A safe, verified community</span>
 
+                <!-- Título principal -->
                 <h1>A space of your own,<br>safe and just yours.</h1>
 
+                <!-- Descripción -->
                 <p>
-                    Connect with friends, family, and creators.
-                    Share experiences, discover inspiration,
-                    and ask for help whenever you need it.
-                    AÚNA is made so every woman feels welcome.
+                    Connect with friends, family, and creators. Share experiences, discover inspiration, and ask for
+                    help whenever you need it. AÚNA is made so every woman feels welcome.
                 </p>
 
-                <a href="#community" class="hero-button">
-                    Explore community
-                </a>
+                <!-- Botón que baja a la comunidad -->
+                <a href="#community" class="hero-button">Explore content</a>
 
-                <div class="hero-features">
-
-                    <span>✓ Women-centered</span>
-                    <span>✓ Safe community</span>
-                    <span>✓ Inclusive and accessible design</span>
-
-                </div>
+                <!-- Tres datos cortos con punto -->
+                <ul class="hero-features">
+                    <li><span class="dot"></span>120k+ active users</li>
+                    <li><span class="dot"></span>Verified creators</li>
+                    <li><span class="dot"></span>Inclusive and accessible design</li>
+                </ul>
 
             </div>
 
         </section>
 
 
-        <!-- Community section -->
+        <!-- ===== Comunidad ===== -->
         <section class="community-section" id="community">
 
+            <!-- Título de la sección -->
             <div class="section-heading">
 
                 <span>LIVE COMMUNITY</span>
 
                 <h2>Voices that look out for each other</h2>
-
-                <a href="#explore">View all →</a>
-
+                <a href="../explore/explore.html">View all →</a>
             </div>
 
 
-            <!-- Create post -->
+            <!-- Formulario para crear un post -->
             <div class="create-post">
 
                 <h3>Share something with the community</h3>
+                <p>Post a photo or video and choose a topic to help others find it.</p>
 
-                <p>
-                    Post a photo or video and choose who gets to see it.
-                </p>
+                <!-- Texto del post; va en una sola línea para que se vea el placeholder -->
+                <textarea id="post-text" placeholder="What do you want to share today?"
+                    aria-label="What do you want to share today?"></textarea>
 
-                <textarea
-                    placeholder="What do you want to share today?"
-                    aria-label="Create a post">
-                </textarea>
-
-
+                <!-- Opciones del post -->
                 <div class="post-options">
 
-                    <span>Choose a topic</span>
+                    <!-- Tipo de contenido -->
+                    <div class="option-group">
+                        <span class="option-label">Content type</span>
+                        <div class="chips type-chips">
+                            <button type="button" class="chip" aria-pressed="false">Photo</button>
+                            <button type="button" class="chip" aria-pressed="false">Video</button>
+                        </div>
 
-                    <button type="button">Mental wellness</button>
-                    <button type="button">Self-care</button>
-                    <button type="button">Creativity</button>
-                    <button type="button">Motherhood</button>
-                    <button type="button">Study & career</button>
+                    </div>
+
+                    <!-- Tema del post -->
+                    <div class="option-group">
+                        <span class="option-label">Topic</span>
+                        <div class="chips topic-chips">
+                            <button type="button" class="chip topic-chip" aria-pressed="false">Mental wellness</button>
+                            <button type="button" class="chip topic-chip" aria-pressed="false">Book club</button>
+                            <button type="button" class="chip topic-chip" aria-pressed="false">Safe spaces</button>
+                            <button type="button" class="chip topic-chip" aria-pressed="false">Creativity</button>
+                            <button type="button" class="chip topic-chip" aria-pressed="false">Motherhood</button>
+                            <button type="button" class="chip topic-chip" aria-pressed="false">Study & career</button>
+                        </div>
+                    </div>
 
                 </div>
 
+                <!-- Portada del post; la primera viene seleccionada -->
+                <div class="option-group">
+                    <span class="option-label">Choose a cover</span>
+                    <div class="covers">
+                        <button type="button" class="cover active" aria-pressed="true">
+                            <img src="../../assets/images/libroanimado.png" alt="Notebook with stickers">
+                        </button>
+                        <button type="button" class="cover" aria-pressed="false">
+                            <img src="../../assets/images/parque.png" alt="Park with trees">
+                        </button>
+                        <button type="button" class="cover" aria-pressed="false">
+                            <img src="../../assets/images/cafe.png" alt="Latte with heart art">
+                        </button>
+                        <button type="button" class="cover" aria-pressed="false">
+                            <img src="../../assets/images/libro.png" alt="Open book">
+                        </button>
+                    </div>
+                </div>
 
+                <!-- Botón para publicar -->
                 <div class="post-actions">
-
-                    <button type="button">
-                        Add photo or video
-                    </button>
-
-                    <button type="button" class="post-button">
-                        Post
-                    </button>
-
+                    <button type="button" class="post-button">Post</button>
                 </div>
 
             </div>
 
 
-            <!-- Community posts -->
-            <div class="posts-grid">
+            <!-- Publicaciones; js las crea con los datos de data.js -->
+            <div class="posts-grid"></div>
 
 
-                <!-- Post 1 -->
-                <article class="post-card">
-
-                    <img
-                        src="c:\Users\User\Downloads\flowers.png"
-                        alt="Colorful flowers">
-
-                    <div class="post-content">
-
-                        <div class="post-user">
-                            <span class="user-avatar">M</span>
-
-                            <div>
-                                <strong>@mariana.art</strong>
-                                <small>Creativity</small>
-                            </div>
-                        </div>
-
-                        <p>
-                            Sharing my illustrations from this week.
-                            What do you think about the new colors?
-                        </p>
-
-                        <div class="post-interactions">
-
-                            <button type="button">♡ Like</button>
-                            <button type="button">♡ Comment</button>
-                            <button type="button">Save</button>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- Post 2 -->
-                <article class="post-card">
-
-                    <img
-                        src="c:\Users\User\Downloads\nature.png"
-                        alt="Green nature landscape">
-
-                    <div class="post-content">
-
-                        <div class="post-user">
-                            <span class="user-avatar">S</span>
-
-                            <div>
-                                <strong>@sofi.green</strong>
-                                <small>Wellness</small>
-                            </div>
-                        </div>
-
-                        <p>
-                            Sometimes taking a break and going outside
-                            is exactly what we need.
-                        </p>
-
-                        <div class="post-interactions">
-
-                            <button type="button">♡ Like</button>
-                            <button type="button">♡ Comment</button>
-                            <button type="button">Save</button>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- Post 3 -->
-                <article class="post-card">
-
-                    <img
-                        src="c:\Users\User\Downloads\coffee.png"
-                        alt="Coffee cup">
-
-                    <div class="post-content">
-
-                        <div class="post-user">
-                            <span class="user-avatar">G</span>
-
-                            <div>
-                                <strong>@gabi.coffee</strong>
-                                <small>Daily life</small>
-                            </div>
-                        </div>
-
-                        <p>
-                            Coffee and a little time for myself.
-                            What helps you relax during a busy day?
-                        </p>
-
-                        <div class="post-interactions">
-
-                            <button type="button">♡ Like</button>
-                            <button type="button">♡ Comment</button>
-                            <button type="button">Save</button>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- Post 4 -->
-                <article class="post-card">
-
-                    <img
-                        src="c:\Users\User\Downloads\home.png"
-                        alt="Cozy room">
-
-                    <div class="post-content">
-
-                        <div class="post-user">
-                            <span class="user-avatar">L</span>
-
-                            <div>
-                                <strong>@laura.home</strong>
-                                <small>Home</small>
-                            </div>
-                        </div>
-
-                        <p>
-                            I finally finished decorating my little
-                            corner at home.
-                        </p>
-
-                        <div class="post-interactions">
-
-                            <button type="button">♡ Like</button>
-                            <button type="button">♡ Comment</button>
-                            <button type="button">Save</button>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- Post 5 -->
-                <article class="post-card">
-
-                    <img
-                        src="c:\Users\User\Downloads\friends.png"
-                        alt="Friends spending time together">
-
-                    <div class="post-content">
-
-                        <div class="post-user">
-                            <span class="user-avatar">C</span>
-
-                            <div>
-                                <strong>@caro.friends</strong>
-                                <small>Community</small>
-                            </div>
-                        </div>
-
-                        <p>
-                            There is nothing better than spending
-                            time with people who make you feel safe.
-                        </p>
-
-                        <div class="post-interactions">
-
-                            <button type="button">♡ Like</button>
-                            <button type="button">♡ Comment</button>
-                            <button type="button">Save</button>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-
-            <!-- Community statistics -->
+            <!-- Estadísticas de la comunidad -->
             <div class="community-stats">
 
-                <div class="stat">
+                <div class="stat stat-left">
                     <strong>120k+</strong>
                     <span>active users every month</span>
                 </div>
 
                 <div class="stat">
-                    <strong>+5k</strong>
+                    <strong>4.5k</strong>
                     <span>verified creators and professionals</span>
                 </div>
 
-                <div class="stat">
+                <div class="stat stat-right">
                     <strong>92%</strong>
                     <span>say they feel safe on AÚNA</span>
                 </div>
@@ -354,67 +258,45 @@
         </section>
 
 
-        <!-- AÚNA Help section -->
+        <!-- ===== AÚNA Help ===== -->
         <section class="auna-help" id="help">
 
+            <!-- Columna izquierda: ícono, título, texto y botón -->
             <div class="help-content">
-
-                <span>AÚNA HELP</span>
-
-                <h2>Resources when you need them.</h2>
-
-                <p>
-                    Find nearby resources, support and people
-                    who can help you when you need it.
-                </p>
-
-                <button type="button">
-                    Ask the community for help
-                </button>
-
+                <span class="help-icon">A</span>
+                <h2>AÚNA Help</h2>
+                <span class="help-label">RESOURCES NEAR YOU</span>
+                <p>Need to sort something out today? Find health centers, services, and support nearby in seconds.</p>
+                <button type="button" class="help-button">Ask the community for help</button>
             </div>
 
-
-            <div class="help-resources">
-
-                <div class="resource-card">
-                    <strong>♡ AÚNA Health Center</strong>
-                </div>
-
-                <div class="resource-card">
-                    <strong>♡ La Aurora Pharmacy</strong>
-                </div>
-
-                <div class="resource-card">
-                    <strong>♡ Cali Care</strong>
-                </div>
-
-            </div>
+            <!-- Lugares cercanos; js los crea con los datos de data.js -->
+            <ul class="help-resources"></ul>
 
         </section>
 
     </main>
 
 
-    <!-- Footer -->
+    <!-- Mensaje corto que aparece abajo por unos segundos -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+
+    <!-- ===== Footer ===== -->
     <footer>
 
+        <!-- Nombre y frase -->
         <div class="footer-brand">
 
             <strong>AÚNA</strong>
-
-            <p>
-                Made with care for every woman finding her place.
-            </p>
-
+            <p>Made with care so every woman finds her place.</p>
         </div>
 
-        <nav class="footer-navigation">
-
-            <a href="#community">Community</a>
-            <a href="#help">Help</a>
-            <a href="#explore">Explore</a>
-
+        <!-- Links del pie de página -->
+        <nav class="footer-navigation" aria-label="Footer navigation">
+            <a href="../community/community.html">Community</a>
+            <a href="../help/help.html">Help</a>
+            <a href="../explore/explore.html">Explore</a>
         </nav>
 
     </footer>
