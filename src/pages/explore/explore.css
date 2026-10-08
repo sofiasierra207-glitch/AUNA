@@ -73,28 +73,8 @@ h3 {
 }
 
 .logo img {
-    width: 55px;
-    height: 55px;
-}
-
-/* textos del logo uno debajo del otro */
-.logo-texto {
-    display: flex;
-    flex-direction: column;
-}
-
-.logo-nombre {
-    font-family: "Playfair Display", Georgia, serif;
-    font-weight: 600;
-    font-size: 33px;
-    color: #49343d;
-    line-height: 1;
-}
-
-.logo-slogan {
-    font-family: "Montserrat", Arial, sans-serif;
-    font-size: 12px;
-    color: #b45e69;
+    height: 56px;
+    width: auto;
 }
 
 /* menú en fila */
