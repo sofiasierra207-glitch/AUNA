@@ -125,15 +125,11 @@ header {
     border-color: #F7D9E3;
 }
 
-/* Tamaño y trazo de los íconos */
-.icon-button svg {
+/* Tamaño de los íconos */
+.icon-button img {
     width: 22px;
     height: 22px;
-    fill: none;
-    stroke: #2C1D25;
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+    
 }
 
 
@@ -638,15 +634,10 @@ header {
     color: #C2456E;
 }
 
-/* Íconos de línea; currentColor usa el color del texto */
-.action-button svg {
+/* Tamaño de los íconos de la tarjeta */
+.action-button img {
     width: 15px;
     height: 15px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
 }
 
 /* margin-left auto empuja Guardar a la derecha */
@@ -661,10 +652,6 @@ header {
     color: #C2456E;
 }
 
-.like-button.liked svg,
-.save-button.saved svg {
-    fill: currentColor;
-}
 
 /* Caja para comentar, oculta al inicio */
 .comment-box {
@@ -1034,7 +1021,7 @@ footer {
         height: 28px;
     }
 
-    .icon-button svg {
+    .icon-button img {
         width: 14px;
         height: 14px;
     }
