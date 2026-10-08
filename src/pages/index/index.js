@@ -51,7 +51,7 @@ function createPostCard(post) {
 
             <span class="post-tag">${post.tag}</span>
 
-            <p class="post-text">${post.text}</p>
+            <p class="post-text"></p>
 
             <div class="post-interactions">
 
@@ -79,6 +79,9 @@ function createPostCard(post) {
 
         </div>
     `;
+
+    // El texto se pone con textContent para que se vea tal cual lo escribió la usuaria
+    card.querySelector(".post-text").textContent = post.text;
 
     // Busca los botones y textos que están dentro de esta tarjeta
     const likeButton = card.querySelector(".like-button");
@@ -216,6 +219,76 @@ function setupGroup(selector) {
 setupGroup(".type-chips .chip");
 setupGroup(".topic-chips .chip");
 setupGroup(".cover");
+
+
+/* 
+   Publicar un post
+*/
+
+const postText = document.querySelector("#post-text");
+const postError = document.querySelector("#post-error");
+const postButton = document.querySelector(".post-button");
+
+// Clic en Post: si no hay texto muestra el error; si hay, publica
+postButton.addEventListener("click", function () {
+    const text = postText.value.trim();
+
+    if (text === "") {
+        postError.textContent = "Write something before posting.";
+        postText.focus();
+    } else {
+        // Tema elegido; si no eligió ninguno queda "Community"
+        let topic = "Community";
+        const topicChip = document.querySelector(".topic-chips .chip.active");
+        if (topicChip) {
+            topic = topicChip.textContent;
+        }
+
+        // Portada elegida
+        const coverImage = document.querySelector(".cover.active img");
+
+        // Post nuevo con el mismo formato de data.js
+        const newPost = {
+            user: currentUser.user,
+            initial: currentUser.initial,
+            role: currentUser.role,
+            time: "Just now",
+            tag: topic,
+            text: text,
+            image: coverImage.getAttribute("src"),
+            imageAlt: coverImage.alt,
+            comments: 0,
+            likes: 0,
+            liked: false,
+            saved: false
+        };
+
+        // Lo pone de primero en la lista y vuelve a pintar el feed
+        posts.unshift(newPost);
+        renderPosts();
+
+        // Limpia el formulario y muestra la ventana de éxito
+        resetPostForm();
+        openPostedModal();
+    }
+});
+
+// Borra el error apenas la usuaria empieza a escribir
+postText.addEventListener("input", function () {
+    postError.textContent = "";
+});
+
+// Deja el formulario vacío y sin chips elegidos
+function resetPostForm() {
+    postText.value = "";
+    postError.textContent = "";
+
+    const activeChips = document.querySelectorAll(".chip.active");
+    for (const chip of activeChips) {
+        chip.classList.remove("active");
+        chip.setAttribute("aria-pressed", "false");
+    }
+}
 
 
 /* 
