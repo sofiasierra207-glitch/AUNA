@@ -55,9 +55,7 @@ header {
 
 /* Logo a la izquierda, menú al centro, íconos a la derecha */
 .header {
-    max-width: 1440px;
     height: 96px;
-    margin: 0 auto;
     padding: 0 80px;
     display: flex;
     align-items: center;
@@ -148,8 +146,6 @@ header {
 
 /* Dos columnas: tarjeta a la izquierda y texto a la derecha */
 .hero {
-    max-width: 1440px;
-    margin: 0 auto;
     padding: 56px 80px 80px;
     display: flex;
     align-items: center;
@@ -337,8 +333,6 @@ header {
  */
 
 .community-section {
-    max-width: 1440px;
-    margin: 0 auto;
     padding: 40px 80px 80px;
 }
 
@@ -743,8 +737,7 @@ header {
 
 /* Caja oscura con dos columnas: texto y recursos */
 .auna-help {
-    max-width: 1280px;
-    margin: 0 auto 80px;
+    margin: 0 80px 80px;
     padding: 48px;
     background-color: #3B2430;
     border-radius: 28px;
