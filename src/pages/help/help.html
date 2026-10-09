@@ -1,11 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Codificación y tamaño adaptable a celular -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUNA</title>
+
+    <!-- Título de la pestaña -->
+    <title>AÚNA Help</title>
+
+    <!-- Fuentes de AÚNA guardadas en assets -->
+    <link rel="stylesheet" href="../../assets/fonts/fonts.css">
+
+    <!-- Estilos de la página y de los componentes -->
+    <link rel="stylesheet" href="help.css">
+    <link rel="stylesheet" href="../../components/language/language.css">
+    <link rel="stylesheet" href="../../components/search/search.css">
+    <link rel="stylesheet" href="../../components/communityhelp/communityhelp.css">
+
+    <!-- Datos, componentes y JS de la página; defer espera a que cargue el HTML -->
+    <script src="data.js" defer></script>
+    <script src="../../components/language/language.js" defer></script>
+    <script src="../../components/search/search.js" defer></script>
+    <script src="../../components/communityhelp/communityhelp.js" defer></script>
+    <script src="help.js" defer></script>
 </head>
+
 <body>
-    
+
+    <!-- ===== Header ===== -->
+    <header>
+
+        <div class="header">
+
+            <!-- Logo que lleva al inicio -->
+            <a href="../index/index.html" class="logo" aria-label="AÚNA home">
+                <img src="../../assets/images/logoauna.png" alt="AÚNA logo">
+            </a>
+
+            <!-- Menú principal; active marca la página actual -->
+            <nav class="main-nav" aria-label="Main navigation">
+                <ul>
+                    <li><a href="../index/index.html" class="nav-link">Home</a></li>
+                    <li><a href="../explore/explore.html" class="nav-link">Explore</a></li>
+                    <li><a href="../community/community.html" class="nav-link">Community</a></li>
+                    <li><a href="../favorites/favorites.html" class="nav-link">Favorites</a></li>
+                    <li><a href="help.html" class="nav-link active" aria-current="page">AÚNA Help</a></li>
+                </ul>
+            </nav>
+
+            <!-- Botones redondos con íconos -->
+            <div class="header-actions">
+
+                <!-- Botón de búsqueda -->
+                <button type="button" class="icon-button" id="search-button" aria-label="Search">
+                    <img src="../../assets/icons/search.svg" alt="">
+                </button>
+
+                <!-- Botón de perfil -->
+                <button type="button" class="icon-button" id="profile-button" aria-label="Profile">
+                    <img src="../../assets/icons/profile.svg" alt="">
+                </button>
+
+                <!-- Botón de idioma -->
+                <button type="button" class="icon-button" id="language-button" aria-label="Change language">
+                    <img src="../../assets/icons/language.svg" alt="">
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- Menú inferior, solo visible en celular -->
+    <nav class="bottom-nav" aria-label="Mobile navigation">
+        <a href="../index/index.html" class="bottom-link"><span class="dot"></span>Home</a>
+        <a href="../explore/explore.html" class="bottom-link"><span class="dot"></span>Explore</a>
+        <a href="../community/community.html" class="bottom-link"><span class="dot"></span>Community</a>
+        <a href="../favorites/favorites.html" class="bottom-link"><span class="dot"></span>Favorites</a>
+        <a href="help.html" class="bottom-link active" aria-current="page"><span class="dot"></span>Help</a>
+    </nav>
+
+
+    <!-- Contenido principal -->
+    <main class="help-page">
+
+        <!-- ===== Título de la página ===== -->
+        <section class="help-intro">
+            <h1>AÚNA Help</h1>
+            <p>
+                Resources and nearby places for whatever you need today. And if you need more,
+                the community is just a message away.
+            </p>
+
+            <!-- Filtros por categoría; JS muestra solo los lugares del filtro elegido -->
+            <div class="chips filter-chips">
+                <button type="button" class="chip active" aria-pressed="true">All</button>
+                <button type="button" class="chip" aria-pressed="false">Health</button>
+                <button type="button" class="chip" aria-pressed="false">Safe space</button>
+                <button type="button" class="chip" aria-pressed="false">Support</button>
+                <button type="button" class="chip" aria-pressed="false">Legal</button>
+                <button type="button" class="chip" aria-pressed="false">Everyday</button>
+            </div>
+        </section>
+
+
+        <!-- ===== Lugares cercanos; JS los crea con los datos de data.js ===== -->
+        <section class="resources-grid" aria-label="Nearby resources"></section>
+
+
+        <!-- ===== Caja oscura para pedir ayuda ===== -->
+        <section class="ask-help">
+            <div>
+                <h2>Can't find what you need?</h2>
+                <p>Tell the community what you need today. Your message only reaches verified users nearby.</p>
+            </div>
+            <button type="button" class="ask-help-button">Ask the community for help</button>
+        </section>
+
+
+        <!-- ===== Preguntas frecuentes; JS las crea con los datos de data.js ===== -->
+        <section class="faq">
+            <h2>Frequently asked questions</h2>
+            <div class="faq-list"></div>
+        </section>
+
+    </main>
+
+
+    <!-- Mensaje corto que aparece abajo por unos segundos -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+
+    <!-- ===== Footer ===== -->
+    <footer>
+
+        <!-- Nombre y frase -->
+        <div class="footer-brand">
+            <strong>AÚNA</strong>
+            <p>Made with care so every woman finds her place.</p>
+        </div>
+
+        <!-- Links del pie de página -->
+        <nav class="footer-navigation" aria-label="Footer navigation">
+            <a href="../community/community.html">Community</a>
+            <a href="help.html">Help</a>
+            <a href="../explore/explore.html">Explore</a>
+        </nav>
+
+    </footer>
+
 </body>
+
 </html>
