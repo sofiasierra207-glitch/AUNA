@@ -336,10 +336,6 @@ document.querySelector("#search-button").addEventListener("click", function () {
     abrirBuscar();
 });
 
-document.querySelector("#profile-button").addEventListener("click", function () {
-    showToast("Your profile menu is coming soon");
-});
-
 // Botón de AÚNA Help: abre el componente de pedir ayuda de Cami
 document.querySelector(".help-button").addEventListener("click", function () {
     abrirAyuda();
@@ -348,4 +344,4 @@ document.querySelector(".help-button").addEventListener("click", function () {
 
 // Pinta los posts y los lugares apenas carga la página
 renderPosts();
-renderResources();
+renderResources();
