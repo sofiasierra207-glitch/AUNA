@@ -1,11 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Codificación y tamaño adaptable a celular -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUNA</title>
+
+    <!-- Título de la pestaña -->
+    <title>AÚNA · Log in</title>
+
+    <!-- Fuentes de AÚNA (Inter y Playfair Display) guardadas en assets -->
+    <link rel="stylesheet" href="../../assets/fonts/fonts.css">
+
+    <!-- Estilos de la página y del componente para crear perfil -->
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="../../components/createprofile/createprofile.css">
+
+    <!-- Componente y JS de la página; defer espera a que cargue el HTML -->
+    <script src="../../components/createprofile/createprofile.js" defer></script>
+    <script src="login.js" defer></script>
 </head>
+
 <body>
-    
+
+    <main class="login-page">
+
+        <!-- ===== Columna oscura con la bienvenida ===== -->
+        <section class="login-intro">
+
+            <!-- Logo: círculo con la A y el nombre -->
+            <div class="login-logo">
+                <span class="login-logo-circle">A</span>
+                <span class="login-logo-name">AÚNA</span>
+            </div>
+
+            <div class="login-intro-text">
+                <h1>A space of your own,<br>safe and just yours.</h1>
+                <p>Share experiences, find verified resources, and ask for help whenever you need it.</p>
+                <span class="login-tag"><span class="dot"></span>A safe, verified community</span>
+            </div>
+
+        </section>
+
+
+        <!-- ===== Columna clara con el formulario ===== -->
+        <section class="login-form-side">
+
+            <form class="login-form" novalidate>
+
+                <h2>Welcome back</h2>
+                <p class="login-subtitle">Log in to continue in your own space.</p>
+
+                <label for="login-email">Email address</label>
+                <input type="email" id="login-email" class="login-input" placeholder="you@email.com">
+
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" class="login-input" placeholder="Your password">
+
+                <!-- Link para recuperar la contraseña -->
+                <button type="button" class="login-forgot">Forgot your password?</button>
+
+                <!-- Mensaje de error o de aviso -->
+                <p class="login-message" role="status"></p>
+
+                <button type="submit" class="login-button">Log in</button>
+
+                <!-- Línea con "or" en el medio -->
+                <div class="login-divider">
+                    <span class="login-line"></span>
+                    <span>or</span>
+                    <span class="login-line"></span>
+                </div>
+
+                <p class="login-create">
+                    Don't have an account?
+                    <button type="button" class="login-create-button">Create account</button>
+                </p>
+
+            </form>
+
+        </section>
+
+    </main>
+
 </body>
+
 </html>
