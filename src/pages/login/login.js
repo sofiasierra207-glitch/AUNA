@@ -52,13 +52,12 @@ loginForm.addEventListener("submit", function (event) {
    Botones de abajo
 */
 
-// "Forgot your password?": aquí se conecta el componente de Cami cuando esté listo
+// "Forgot your password?": abre el componente de Cami para recuperar la contraseña
 document.querySelector(".login-forgot").addEventListener("click", function () {
-    loginMessage.textContent = "Password recovery is coming soon.";
-    loginMessage.classList.add("info");
+    abrirOlvide();
 });
 
 // "Create account": abre el componente para crear perfil
 document.querySelector(".login-create-button").addEventListener("click", function () {
     openCreateProfile();
-});
+});
