@@ -12,7 +12,8 @@
     justify-content: center;
     align-items: flex-start;
     padding: 120px 16px 16px;
-    z-index: 100;
+    /* 3000 para que quede encima del menu de abajo en celular (igual que las ventanas de Sofía) */
+    z-index: 3000;
 }
 
 /* cuando el js le pone la clase abierto se muestra
