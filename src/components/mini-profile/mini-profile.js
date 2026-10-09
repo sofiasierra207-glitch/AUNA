@@ -3,22 +3,10 @@
 // en la pagina solo agrego el css y el js de este componente
 // el boton de perfil tiene que tener id="profile-button"
 
-// datos de la usuaria, los guardo en un objeto
-// asi si cambio algo aqui se cambia en el menu y en el modal
+// datos de la usuaria que salen en el menu
 const usuaria = {
     nombre: "Valentina Torres",
-    usuario: "@valen.torres",
-    bio: "Learning to take care of myself without guilt. Sharing what helps me: reading, simple routines, and quiet moments.",
-    seguidoras: 186,
-    posts: 42,
-    totalColecciones: 9,
-    intereses: ["Mental wellness", "Reading", "Creativity", "Motherhood", "Safe spaces"],
-    // en el modal solo muestro 3 colecciones, aunque tenga 9 en total
-    colecciones: [
-        { nombre: "Safe routes", cantidad: "8 places" },
-        { nombre: "For slow reading", cantidad: "12 posts" },
-        { nombre: "Voices that support you", cantidad: "9 stories" }
-    ]
+    usuario: "@valen.torres"
 };
 
 // la inicial para el circulo: charAt(0) es la primera letra del nombre
@@ -88,106 +76,21 @@ document.addEventListener("click", (evento) => {
     }
 });
 
-// Settings: por ahora solo cierro el menu
-// aqui se conecta el componente de configuracion cuando este listo
+// "View my profile": cierro el menu y abro el componente profile de Anny
+document.getElementById("opcion-ver-perfil").addEventListener("click", () => {
+    cerrarMiniPerfil();
+    openProfile();
+});
+
+// Settings: cierro el menu y abro el componente configuration de Anny
 document.getElementById("opcion-ajustes").addEventListener("click", () => {
     cerrarMiniPerfil();
+    openSettings();
 });
 
-
-// ---------- modal de ver mi perfil ----------
-
-// armo las pildoras de intereses recorriendo el array
-// += va sumando cada pildora al texto
-let htmlIntereses = "";
-usuaria.intereses.forEach(interes => {
-    htmlIntereses += `<span class="perfil-interes">${interes}</span>`;
-});
-
-// lo mismo con las colecciones
-let htmlColecciones = "";
-usuaria.colecciones.forEach(coleccion => {
-    htmlColecciones += `
-        <div class="perfil-coleccion">
-            <strong>${coleccion.nombre}</strong>
-            <span>${coleccion.cantidad}</span>
-        </div>
-    `;
-});
-
-// creo el fondo oscuro y la caja del modal
-const perfilFondo = document.createElement("div");
-perfilFondo.className = "perfil-fondo";
-
-perfilFondo.innerHTML = `
-    <div class="perfil-modal">
-
-        <div class="perfil-arriba">
-            <div class="perfil-avatar">${inicial}</div>
-            <div class="perfil-quien">
-                <div class="perfil-nombre-fila">
-                    <h3>${usuaria.nombre}</h3>
-                    <span class="perfil-verificada">✓ Verified</span>
-                </div>
-                <p class="perfil-usuario">${usuaria.usuario}</p>
-            </div>
-            <button type="button" class="perfil-cerrar" aria-label="Close">×</button>
-        </div>
-
-        <p class="perfil-bio">${usuaria.bio}</p>
-
-        <div class="perfil-numeros">
-            <div class="perfil-numero"><strong>${usuaria.seguidoras}</strong><span>Followers</span></div>
-            <div class="perfil-numero"><strong>${usuaria.posts}</strong><span>Posts</span></div>
-            <div class="perfil-numero"><strong>${usuaria.totalColecciones}</strong><span>Collections</span></div>
-        </div>
-
-        <div>
-            <p class="perfil-subtitulo">Interests</p>
-            <div class="perfil-intereses">${htmlIntereses}</div>
-        </div>
-
-        <div>
-            <p class="perfil-subtitulo">Collections</p>
-            <div class="perfil-colecciones">${htmlColecciones}</div>
-        </div>
-
-        <button type="button" class="perfil-editar">Edit profile</button>
-    </div>
-`;
-
-document.body.appendChild(perfilFondo);
-
-
-// abrir y cerrar el modal
-function abrirPerfil() {
-    cerrarMiniPerfil(); // cierro el menu para que no quede abierto detras
-    perfilFondo.classList.add("abierto");
-}
-
-function cerrarPerfil() {
-    perfilFondo.classList.remove("abierto");
-}
-
-// "View my profile" abre el modal
-document.getElementById("opcion-ver-perfil").addEventListener("click", abrirPerfil);
-
-// la x y "Edit profile" cierran el modal
-// (edit profile se conecta despues con la configuracion)
-perfilFondo.querySelector(".perfil-cerrar").addEventListener("click", cerrarPerfil);
-perfilFondo.querySelector(".perfil-editar").addEventListener("click", cerrarPerfil);
-
-// click en el fondo oscuro (afuera de la caja) tambien lo cierra
-perfilFondo.addEventListener("click", (evento) => {
-    if (evento.target === perfilFondo) {
-        cerrarPerfil();
-    }
-});
-
-// con Escape se cierra el modal y el menu
+// con Escape tambien se cierra el menu
 document.addEventListener("keydown", (evento) => {
     if (evento.key === "Escape") {
-        cerrarPerfil();
         cerrarMiniPerfil();
     }
 });
