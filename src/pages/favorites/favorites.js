@@ -159,6 +159,11 @@ tabs.forEach(tab => {
     });
 });
 
-
+// la lupa del header abre el popup de buscar
+// abrirBuscar() esta en components/search/search.js
+const btnLupa = document.getElementById("btn-lupa");
+btnLupa.addEventListener("click", () => {
+    abrirBuscar();
+});
 // cuando abro la pagina muestro los guardados
 mostrarGuardados();

@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- esta pagina es solo para probar el componente solo -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUNA</title>
+    <title>Search component</title>
+
+    <!-- fuentes del proyecto y el css del popup -->
+    <link rel="stylesheet" href="../../assets/fonts/fonts.css">
+    <link rel="stylesheet" href="search.css">
+
+    <!-- defer hace que el js se cargue cuando el html ya existe -->
+    <script src="search.js" defer></script>
 </head>
+
 <body>
-    
+    <!-- boton de prueba para abrir el popup -->
+    <button type="button" id="btn-probar">Open search</button>
+
+    <script>
+        // cuando le doy click al boton de prueba abro el popup
+        document.getElementById("btn-probar").addEventListener("click", () => {
+            abrirBuscar();
+        });
+    </script>
 </body>
+
 </html>
