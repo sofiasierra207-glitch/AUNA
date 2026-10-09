@@ -1,0 +1,346 @@
+/* ---------- menu del mini perfil ---------- */
+
+/* el menu sale debajo del boton de perfil
+   position absolute lo ubica respecto a la caja de botones del header,
+   por eso esa caja tiene que tener position relative en la pagina
+   empieza escondido con display none */
+.mini-perfil {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 300px;
+    background-color: #ffffff;
+    border: 1px solid #f1dfe4;
+    border-radius: 24px;
+    padding: 24px 8px 8px;
+    box-shadow: 0 12px 32px rgba(44, 29, 37, 0.14);
+    font-family: "Inter", Arial, sans-serif;
+    color: #2c1d25;
+    z-index: 1100;
+}
+
+/* cuando el js le pone la clase abierto se muestra */
+.mini-perfil.abierto {
+    display: block;
+}
+
+/* le quito el margin que pone el navegador */
+.mini-perfil *,
+.perfil-modal * {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/* fila de arriba: circulo con la inicial, nombre y usuario */
+.mini-perfil-arriba {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px 20px;
+    border-bottom: 1px solid #f1dfe4;
+    margin-bottom: 8px;
+}
+
+/* circulo rosado con la inicial
+   flex-shrink 0 para que no se aplaste */
+.perfil-avatar {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: #f7d9e3;
+    color: #c2456e;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mini-perfil-nombre {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.mini-perfil-usuario {
+    font-size: 13px;
+    color: #6e5a63;
+    margin-top: 4px;
+}
+
+/* cada opcion del menu ocupa todo el ancho
+   uso la misma clase para los botones y los links, asi se ven iguales */
+.mini-perfil-opcion {
+    display: block;
+    width: 100%;
+    text-align: left;
+    text-decoration: none;
+    border: none;
+    background: none;
+    border-radius: 12px;
+    padding: 13px 16px;
+    font-family: inherit;
+    font-size: 15px;
+    color: #2c1d25;
+    cursor: pointer;
+}
+
+.mini-perfil-opcion:hover {
+    background-color: #fdedf1;
+}
+
+/* log out va en rosado como en el figma */
+.mini-perfil-salir {
+    color: #c2456e;
+}
+
+
+/* ---------- modal de ver mi perfil ---------- */
+
+/* fondo oscuro que tapa la pagina
+   border-box para que el padding no lo haga mas ancho que la pantalla */
+.perfil-fondo {
+    box-sizing: border-box;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(44, 29, 37, 0.45);
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    z-index: 1200;
+}
+
+.perfil-fondo.abierto {
+    display: flex;
+}
+
+/* caja blanca del perfil
+   max-height y overflow para poder hacer scroll adentro si no cabe */
+.perfil-modal {
+    width: 520px;
+    max-width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    background-color: #ffffff;
+    border-radius: 28px;
+    padding: 32px;
+    font-family: "Inter", Arial, sans-serif;
+    color: #2c1d25;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* fila de arriba: avatar, nombre y boton de cerrar
+   align-items flex-start para que la x quede arriba */
+.perfil-arriba {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+/* el avatar del modal es mas grande */
+.perfil-arriba .perfil-avatar {
+    width: 84px;
+    height: 84px;
+    font-size: 34px;
+}
+
+/* flex 1 hace que el nombre ocupe el espacio del medio */
+.perfil-quien {
+    flex: 1;
+    padding-top: 6px;
+}
+
+/* nombre y la etiqueta de verificada en una fila */
+.perfil-nombre-fila {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.perfil-nombre-fila h3 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 32px;
+}
+
+/* pildora de verified */
+.perfil-verificada {
+    background-color: #f7d9e3;
+    color: #c2456e;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+
+.perfil-usuario {
+    font-size: 14px;
+    color: #6e5a63;
+    margin-top: 4px;
+}
+
+/* boton redondo con la x */
+.perfil-cerrar {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: #fdedf1;
+    color: #2c1d25;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.perfil-cerrar:hover {
+    background-color: #f7d9e3;
+}
+
+.perfil-bio {
+    font-size: 14px;
+    line-height: 22px;
+}
+
+/* caja con los 3 numeros
+   flex 1 en cada uno para que midan lo mismo */
+.perfil-numeros {
+    display: flex;
+    background-color: #fff4f1;
+    border-radius: 16px;
+    padding: 10px 0;
+}
+
+.perfil-numero {
+    flex: 1;
+    text-align: center;
+}
+
+/* linea entre los numeros (menos el primero) */
+.perfil-numero + .perfil-numero {
+    border-left: 1px solid #f1dfe4;
+}
+
+.perfil-numero strong {
+    display: block;
+    font-size: 18px;
+}
+
+.perfil-numero span {
+    font-size: 12px;
+    color: #6e5a63;
+}
+
+/* titulos de Interests y Collections */
+.perfil-subtitulo {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+/* pildoras de intereses, flex-wrap para que bajen si no caben */
+.perfil-intereses {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.perfil-interes {
+    background-color: #f7d9e3;
+    color: #c2456e;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 7px 14px;
+    border-radius: 999px;
+}
+
+/* 3 colecciones en fila, flex 1 para que midan lo mismo */
+.perfil-colecciones {
+    display: flex;
+    gap: 16px;
+}
+
+.perfil-coleccion {
+    flex: 1;
+    min-height: 80px;
+    background-color: #fff4f1;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+/* la del medio va en rosado como en el figma */
+.perfil-coleccion:nth-child(2) {
+    background-color: #f7d9e3;
+}
+
+.perfil-coleccion strong {
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.perfil-coleccion span {
+    font-size: 11px;
+    color: #6e5a63;
+}
+
+/* boton rosado que ocupa todo el ancho */
+.perfil-editar {
+    width: 100%;
+    border: none;
+    background-color: #c2456e;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 15px;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.perfil-editar:hover {
+    opacity: 0.9;
+}
+
+
+/* ---------- celular ---------- */
+@media (max-width: 600px) {
+
+    /* el menu un poco mas angosto */
+    .mini-perfil {
+        width: 260px;
+        top: 48px;
+    }
+
+    .perfil-modal {
+        padding: 24px 20px;
+        border-radius: 24px;
+    }
+
+    .perfil-arriba .perfil-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 26px;
+    }
+
+    .perfil-nombre-fila h3 {
+        font-size: 21px;
+        line-height: 26px;
+    }
+
+    /* las colecciones una debajo de la otra */
+    .perfil-colecciones {
+        flex-direction: column;
+    }
+}
