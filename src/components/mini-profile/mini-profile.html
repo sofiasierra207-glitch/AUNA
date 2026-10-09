@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- esta pagina es solo para probar el componente solo -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUNA</title>
+    <title>Mini profile component</title>
+
+    <!-- fuentes del proyecto y el css del componente -->
+    <link rel="stylesheet" href="../../assets/fonts/fonts.css">
+    <link rel="stylesheet" href="mini-profile.css">
+
+    <!-- estilos solo para esta pagina de prueba -->
+    <style>
+        .prueba-botones {
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            padding: 24px;
+        }
+    </style>
+
+    <!-- defer hace que el js se cargue cuando el html ya existe -->
+    <script src="mini-profile.js" defer></script>
 </head>
+
 <body>
-    
+    <!-- simulo el boton de perfil del header
+         el js busca el boton con id profile-button y pone el menu al lado -->
+    <div class="prueba-botones">
+        <button type="button" id="profile-button">Open mini profile</button>
+    </div>
 </body>
+
 </html>
