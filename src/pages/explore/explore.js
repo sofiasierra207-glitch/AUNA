@@ -174,12 +174,13 @@ function crearTarjeta(post) {
     const metricas = document.createElement("div");
     metricas.className = "post-metricas";
 
-    // comentarios: uso innerHTML porque lleva el icono y el numero
+    // boton de comentarios: uso innerHTML porque lleva el icono y el numero
     // con las comillas ` ` puedo meter variables usando ${ }
-    const comentarios = document.createElement("span");
-    comentarios.className = "post-accion";
-    comentarios.innerHTML = `<img src="../../assets/icons/comment.svg" alt="Comments"> ${post.comentarios}`;
-    metricas.appendChild(comentarios);
+    // es un button porque al darle click abre la caja para comentar
+    const btnComentar = document.createElement("button");
+    btnComentar.className = "post-accion btn-comentar";
+    btnComentar.innerHTML = `<img src="../../assets/icons/comment.svg" alt="Comments"> ${post.comentarios}`;
+    metricas.appendChild(btnComentar);
 
     // creo el boton del like, lo que tiene adentro lo pone pintarLike
     const btnLike = document.createElement("button");
@@ -193,6 +194,25 @@ function crearTarjeta(post) {
     acciones.appendChild(metricas);
     acciones.appendChild(btnGuardar);
     cuerpo.appendChild(acciones);
+
+
+    // caja para escribir un comentario, empieza escondida en el css
+    // uso un form para que se envie con el boton Send o con Enter
+    const cajaComentario = document.createElement("form");
+    cajaComentario.className = "caja-comentario";
+
+    const inputComentario = document.createElement("input");
+    inputComentario.type = "text";
+    inputComentario.placeholder = "Write a comment...";
+
+    const btnEnviar = document.createElement("button");
+    btnEnviar.type = "submit";
+    btnEnviar.className = "btn-enviar";
+    btnEnviar.textContent = "Send";
+
+    cajaComentario.appendChild(inputComentario);
+    cajaComentario.appendChild(btnEnviar);
+    cuerpo.appendChild(cajaComentario);
 
     // pinto los botones para que se vea si ya tenian like o estaban guardados
     pintarLike(btnLike, post);
@@ -226,6 +246,33 @@ function crearTarjeta(post) {
         }
         localStorage.setItem(guardadosKey, JSON.stringify(guardados));
         pintarGuardar(btnGuardar, post);
+    });
+    
+    // cuando le doy click al icono de comentarios abro o cierro la caja
+    // toggle pone la clase abierta si no la tiene y la quita si ya la tiene
+    btnComentar.addEventListener("click", () => {
+        cajaComentario.classList.toggle("abierta");
+        inputComentario.focus(); // pongo el cursor en el input para escribir de una
+    });
+
+    // cuando envio el comentario (click en Send o Enter)
+    cajaComentario.addEventListener("submit", (evento) => {
+        // evito que la pagina se recargue
+        evento.preventDefault();
+
+        // si no escribi nada no lo envio
+        if (inputComentario.value.trim() === "") {
+            inputComentario.focus();
+            return;
+        }
+
+        // le sumo 1 a los comentarios y cambio el numero en el boton
+        post.comentarios = post.comentarios + 1;
+        btnComentar.innerHTML = `<img src="../../assets/icons/comment.svg" alt="Comments"> ${post.comentarios}`;
+
+        // limpio el input y cierro la caja
+        inputComentario.value = "";
+        cajaComentario.classList.remove("abierta");
     });
 
     // por ultimo meto la tarjeta completa en el grid del html

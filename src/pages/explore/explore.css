@@ -448,6 +448,59 @@ h3 {
     height: 15px;
 }
 
+/* rosado cuando paso el mouse por el icono de comentarios */
+.btn-comentar:hover {
+    color: var(--rosa-principal);
+}
+
+/* caja de comentario, empieza escondida
+   width 100% para que ocupe todo el ancho de la tarjeta */
+.caja-comentario {
+    display: none;
+    width: 100%;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+/* cuando el js le pone la clase abierta se muestra */
+.caja-comentario.abierta {
+    display: flex;
+}
+
+/* flex 1 hace que el input ocupe todo el espacio que sobra
+   min-width 0 para que no se salga de la tarjeta */
+.caja-comentario input {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 12px;
+    border: 1px solid var(--borde);
+    border-radius: 999px;
+    background-color: var(--fondo-pagina);
+    font-family: inherit;
+    font-size: 12px;
+    outline: none;
+}
+
+/* borde rosado cuando estoy escribiendo */
+.caja-comentario input:focus {
+    border-color: var(--rosa-principal);
+}
+
+/* boton rosado de Send */
+.btn-enviar {
+    background-color: var(--rosa-principal);
+    color: var(--blanco);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.btn-enviar:hover {
+    opacity: 0.9;
+}
+
+
 .btn-like .corazon {
     font-size: 15px;
 }
