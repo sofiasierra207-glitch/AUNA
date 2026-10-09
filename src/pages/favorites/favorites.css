@@ -123,6 +123,20 @@ h3 {
     height: 22px;
 }
 
+/* el menu de idiomas se ubica con position absolute,
+   por eso la caja de botones tiene que ser position relative:
+   asi el menu sale justo debajo del boton y no en otra parte de la pagina */
+.header-botones {
+    position: relative;
+}
+
+/* boton de idioma rosado mientras el menu esta abierto
+   la clase active se la pone el js del componente */
+.btn-circulo.active {
+    background-color: var(--rosa-suave);
+    border-color: var(--rosa-suave);
+}
+
 
 /* ---------- hero ---------- */
 
