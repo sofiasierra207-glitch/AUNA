@@ -7,7 +7,7 @@ const professionals = [
         category: "Psychology",
         specialty: "Psychology",
         description: "I support people through anxiety and grief. I post short exercises every week.",
-        followers: "2.4k",
+        followers: 2400,
         replies: "Replies within 1 day",
         following: false
     },
@@ -18,7 +18,7 @@ const professionals = [
         category: "Legal",
         specialty: "Legal advice",
         description: "I answer questions about filing complaints, rentals, and labor rights.",
-        followers: "1.8k",
+        followers: 1800,
         replies: "Replies within 2 days",
         following: false
     },
@@ -29,7 +29,7 @@ const professionals = [
         category: "Health",
         specialty: "Movement",
         description: "Short routines to do at home, no equipment, no pressure to look a certain way.",
-        followers: "5.1k",
+        followers: 5100,
         replies: "Replies within 3h",
         following: false
     },
@@ -40,7 +40,7 @@ const professionals = [
         category: "Health",
         specialty: "Nutrition",
         description: "Real food, real portions. Menus for busy weeks.",
-        followers: "3.6k",
+        followers: 3600,
         replies: "Replies within 1 day",
         following: false
     },
@@ -51,7 +51,7 @@ const professionals = [
         category: "Creativity",
         specialty: "Writing",
         description: "Workshops for saying out loud what's hard to say.",
-        followers: "940",
+        followers: 940,
         replies: "Replies within 5h",
         following: false
     },
@@ -62,7 +62,7 @@ const professionals = [
         category: "Finance",
         specialty: "Finance",
         description: "Savings, debt, and starting a business explained in plain language.",
-        followers: "2.9k",
+        followers: 2900,
         replies: "Replies within 2 days",
         following: false
     }
@@ -74,21 +74,24 @@ const circles = [
         name: "Circle of Calm",
         initial: "C",
         description: "Tuesday meetups to talk about anxiety, no diagnoses required.",
-        details: "312 members · Moderated",
+        members: 312,
+        privacy: "Moderated",
         joined: false
     },
     {
         name: "Read together",
         initial: "L",
         description: "One book a month and a video call to discuss it.",
-        details: "188 members · Open",
+        members: 188,
+        privacy: "Open",
         joined: false
     },
     {
         name: "Real Motherhood",
         initial: "M",
         description: "We rotate hosts every week. No filters, no unsolicited advice.",
-        details: "245 members · Private",
+        members: 245,
+        privacy: "Private",
         joined: false
     }
 ];
