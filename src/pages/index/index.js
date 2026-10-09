@@ -340,8 +340,9 @@ document.querySelector("#profile-button").addEventListener("click", function () 
     showToast("Your profile menu is coming soon");
 });
 
+// Botón de AÚNA Help: abre el componente de pedir ayuda de Cami
 document.querySelector(".help-button").addEventListener("click", function () {
-    showToast("The help request form is coming soon");
+    abrirAyuda();
 });
 
 
