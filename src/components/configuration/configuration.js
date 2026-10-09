@@ -177,17 +177,28 @@ settingsOverlay.addEventListener("click", function (event) {
     }
 });
 
-// Log out: lleva a la página de inicio de sesión
+// Log out: borra la sesión y lleva a la página de inicio de sesión
 settingsOverlay.querySelector(".settings-logout").addEventListener("click", function () {
+    localStorage.removeItem("aunaSession");
     window.location.href = "../../pages/login/login.html";
 });
 
 // Delete: el primer clic pide confirmar y el segundo cierra la sesión
 deleteButton.addEventListener("click", function () {
     if (deleteButton.classList.contains("confirm")) {
+        // Borra la sesión y el perfil guardados
+        localStorage.removeItem("aunaSession");
+        localStorage.removeItem("aunaUser");
         window.location.href = "../../pages/login/login.html";
     } else {
         deleteButton.classList.add("confirm");
         deleteButton.textContent = "Click again to delete your account";
+    }
+});
+
+// Tecla Escape: también cierra la ventana
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        closeSettings();
     }
 });
