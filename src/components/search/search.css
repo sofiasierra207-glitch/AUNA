@@ -36,6 +36,14 @@
     gap: 16px;
 }
 
+/* el navegador le pone margin al h3 y al p, se los quito
+   border-box hace que el padding quede dentro del ancho
+   asi el buscador no se sale de la caja blanca */
+.buscar-popup * {
+    box-sizing: border-box;
+    margin: 0;
+}
+
 /* titulo, le pongo Inter porque en las paginas los h3 son Playfair */
 .buscar-popup h3 {
     font-family: "Inter", Arial, sans-serif;
