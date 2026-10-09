@@ -61,6 +61,16 @@
         </div>
     </header>
 
+    <!-- menu de abajo, solo se ve en celular (igual al de Sofía en Home)
+         active marca la pagina en la que estoy -->
+    <nav class="bottom-nav">
+        <a href="../index/index.html" class="bottom-link"><span class="dot"></span>Home</a>
+        <a href="../explore/explore.html" class="bottom-link active"><span class="dot"></span>Explore</a>
+        <a href="../community/community.html" class="bottom-link"><span class="dot"></span>Community</a>
+        <a href="../favorites/favorites.html" class="bottom-link"><span class="dot"></span>Favorites</a>
+        <a href="../help/help.html" class="bottom-link"><span class="dot"></span>Help</a>
+    </nav>
+
     <main>
 
         <section class="hero">
@@ -105,25 +115,26 @@
             <h2>This week's collections</h2>
 
             <div class="colecciones-lista">
+                <!-- "View collection" lleva a favorites, que es donde estan las colecciones -->
                 <!-- cada tarjeta tiene 2 clases: "coleccion" (forma)
                      y otra para el color de fondo -->
                 <article class="coleccion coleccion-rosa-claro">
                     <h3>Safe routes</h3>
                     <p>48 places verified by users</p>
                     <!-- &nbsp; es un espacio que no se rompe -->
-                    <a href="#">View collection &nbsp;→</a>
+                    <a href="../favorites/favorites.html">View collection &nbsp;→</a>
                 </article>
 
                 <article class="coleccion coleccion-rosa">
                     <h3>Read together</h3>
                     <p>12 active clubs this month</p>
-                    <a href="#">View collection &nbsp;→</a>
+                    <a href="../favorites/favorites.html">View collection &nbsp;→</a>
                 </article>
 
                 <article class="coleccion coleccion-oscura">
                     <h3>Voices that support you</h3>
                     <p>Stories of care and mental health</p>
-                    <a href="#">View collection &nbsp;→</a>
+                    <a href="../favorites/favorites.html">View collection &nbsp;→</a>
                 </article>
             </div>
         </section>
@@ -167,8 +178,8 @@
         </div>
 
         <nav class="footer-links">
-            <a href="#">Community</a>
-            <a href="#">Help</a>
+            <a href="../community/community.html">Community</a>
+            <a href="../help/help.html">Help</a>
             <a href="explore.html">Explore</a>
         </nav>
     </footer>
