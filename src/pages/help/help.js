@@ -130,10 +130,6 @@ document.querySelector("#search-button").addEventListener("click", function () {
     abrirBuscar();
 });
 
-document.querySelector("#profile-button").addEventListener("click", function () {
-    showToast("Your profile menu is coming soon");
-});
-
 // Caja oscura: abre el componente de pedir ayuda de Cami
 document.querySelector(".ask-help-button").addEventListener("click", function () {
     abrirAyuda();
@@ -142,4 +138,4 @@ document.querySelector(".ask-help-button").addEventListener("click", function ()
 
 // Pinta los lugares y las preguntas apenas carga la página
 renderResources();
-renderQuestions();
+renderQuestions();
