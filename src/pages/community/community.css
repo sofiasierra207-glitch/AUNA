@@ -651,6 +651,30 @@ footer {
 
 
 /*
+   Pantallas grandes
+*/
+
+/* Botones redondos del header del mismo tamaño que en Home */
+@media (min-width: 1360px) {
+
+    .header-actions {
+        gap: 10px;
+    }
+
+    .icon-button {
+        width: 58px;
+        height: 58px;
+    }
+
+    .icon-button img {
+        width: 24px;
+        height: 24px;
+    }
+
+}
+
+
+/*
    Tablet
 */
 
@@ -877,4 +901,4 @@ footer {
         bottom: 84px;
     }
 
-}
+}

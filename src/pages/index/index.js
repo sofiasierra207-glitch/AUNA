@@ -229,11 +229,16 @@ const postText = document.querySelector("#post-text");
 const postError = document.querySelector("#post-error");
 const postButton = document.querySelector(".post-button");
 
-// Clic en Post: si no hay texto muestra el error; si hay, publica
+// Clic en Post: solo publica si hay sesión iniciada y si hay texto
 postButton.addEventListener("click", function () {
     const text = postText.value.trim();
 
-    if (text === "") {
+    // El login guarda el correo en "aunaSession"; si no está, no hay sesión
+    const session = localStorage.getItem("aunaSession");
+
+    if (session === null) {
+        postError.innerHTML = 'Log in to share a post. <a href="../login/login.html">Log in</a>';
+    } else if (text === "") {
         postError.textContent = "Write something before posting.";
         postText.focus();
     } else {
@@ -344,4 +349,4 @@ document.querySelector(".help-button").addEventListener("click", function () {
 
 // Pinta los posts y los lugares apenas carga la página
 renderPosts();
-renderResources();
+renderResources();
