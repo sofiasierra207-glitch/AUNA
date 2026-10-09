@@ -21,7 +21,7 @@ buscarFondo.innerHTML = `
         <div class="buscar-tags">
             <button type="button" class="buscar-tag">Community</button>
             <button type="button" class="buscar-tag">Help</button>
-            <button type="button" class="buscar-tag">Recipes</button>
+            <button type="button" class="buscar-tag">Wellness</button>
         </div>
 
         <a href="../../pages/index/index.html" class="buscar-volver">Back to home</a>
