@@ -12,6 +12,8 @@
 
     <!-- css de esta pagina -->
     <link rel="stylesheet" href="favorites.css">
+    <!-- css del popup de buscar (componente) -->
+    <link rel="stylesheet" href="../../components/search/search.css">
 </head>
 
 <body>
@@ -35,7 +37,7 @@
 
         <!-- botones redondos: buscar, perfil e idioma -->
         <div class="header-botones">
-            <button class="btn-circulo"><img src="../../assets/icons/search.svg" alt="Search"></button>
+            <button class="btn-circulo" id="btn-lupa"><img src="../../assets/icons/search.svg" alt="Search"></button>
             <button class="btn-circulo"><img src="../../assets/icons/profile.svg" alt="Profile"></button>
             <button class="btn-circulo"><img src="../../assets/icons/language.svg" alt="Language"></button>
         </div>
@@ -138,7 +140,8 @@
     </footer>
 
 
-    <!-- el script va al final para que el html ya exista cuando se ejecute -->
+    <!-- primero el js del popup de buscar, asi favorites.js ya puede usar abrirBuscar() -->
+    <script src="../../components/search/search.js"></script>
     <script src="favorites.js"></script>
 </body>
 
