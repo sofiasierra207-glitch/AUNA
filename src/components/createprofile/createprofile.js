@@ -142,8 +142,18 @@ createForm.addEventListener("submit", function (event) {
         const newUser = { name: name, email: email, city: city };
         localStorage.setItem("aunaUser", JSON.stringify(newUser));
 
+        // Deja la sesión iniciada para que ya pueda publicar
+        localStorage.setItem("aunaSession", email);
+
         // Cambia el formulario por el mensaje de bienvenida
         welcomeText.textContent = "Welcome to AÚNA, " + name + "! Your profile is ready.";
         createModal.classList.add("done");
+    }
+});
+
+// Tecla Escape: también cierra la ventana
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        closeCreateProfile();
     }
 });
