@@ -794,9 +794,10 @@ footer {
         background-color: #C2456E;
     }
 
-    /* Espacio para que el menú no tape el final */
+    /* Espacio para que el menú no tape el final
+       (en iPhone la barra de Safari también ocupa espacio) */
     body {
-        padding-bottom: 64px;
+        padding-bottom: 96px;
     }
 
     .community-page {
