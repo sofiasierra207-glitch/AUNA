@@ -1,11 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Página para probar el componente solo -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUNA</title>
+    <title>Profile component</title>
+
+    <!-- Fuentes y estilos de los componentes -->
+    <link rel="stylesheet" href="../../assets/fonts/fonts.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="../configuration/configuration.css">
+
+    <!-- Lógica de los componentes; Edit profile abre la configuración -->
+    <script src="profile.js" defer></script>
+    <script src="../configuration/configuration.js" defer></script>
 </head>
+
 <body>
-    
+
+    <!-- Botón de prueba que abre la ventana -->
+    <button type="button" id="test-button">Open profile</button>
+
+    <script>
+        // Botón de prueba que abre el perfil
+        document.querySelector("#test-button").addEventListener("click", function () {
+            openProfile();
+        });
+    </script>
+
 </body>
+
 </html>
