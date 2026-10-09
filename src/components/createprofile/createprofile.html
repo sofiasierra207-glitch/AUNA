@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Página para probar el componente solo -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUNA</title>
+    <title>Create profile component</title>
+
+    <!-- Fuentes y estilos del componente -->
+    <link rel="stylesheet" href="../../assets/fonts/fonts.css">
+    <link rel="stylesheet" href="createprofile.css">
+
+    <!-- Lógica del componente -->
+    <script src="createprofile.js" defer></script>
 </head>
+
 <body>
-    
+
+    <!-- Botón de prueba que abre la ventana -->
+    <button type="button" id="test-button">Open create profile</button>
+
+    <script>
+        // Botón de prueba que abre el formulario
+        document.querySelector("#test-button").addEventListener("click", function () {
+            openCreateProfile();
+        });
+    </script>
+
 </body>
+
 </html>
