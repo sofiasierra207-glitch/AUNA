@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- esta pagina es solo para probar el componente solo -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUNA</title>
+    <title>Community help component</title>
+
+    <!-- fuentes del proyecto y el css del modal -->
+    <link rel="stylesheet" href="../../assets/fonts/fonts.css">
+    <link rel="stylesheet" href="communityhelp.css">
+
+    <!-- defer hace que el js se cargue cuando el html ya existe -->
+    <script src="communityhelp.js" defer></script>
 </head>
+
 <body>
-    
+    <!-- boton de prueba para abrir el modal -->
+    <button type="button" id="btn-probar">Open community help</button>
+
+    <script>
+        // cuando le doy click al boton de prueba abro el modal
+        document.getElementById("btn-probar").addEventListener("click", () => {
+            abrirAyuda();
+        });
+    </script>
 </body>
+
 </html>

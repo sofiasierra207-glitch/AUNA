@@ -80,6 +80,11 @@ const formBuscar = document.getElementById("form-buscar");        // formulario 
 const inputBuscar = document.getElementById("input-buscar");      // donde se escribe la busqueda
 const botonesFiltro = document.querySelectorAll(".filtro");       // los 7 botones de filtro
 const btnCargarMas = document.getElementById("btn-cargar-mas");   // boton de "Load more posts"
+const tituloPublicaciones = document.getElementById("titulo-publicaciones"); // h2 de "Recent posts"
+const resultadoBusqueda = document.getElementById("resultado-busqueda");     // caja con el resultado
+const textoResultado = document.getElementById("texto-resultado");           // texto de cuantos encontre
+const btnLimpiar = document.getElementById("btn-limpiar");                   // boton de "Clear search"
+const seccionPublicaciones = document.querySelector(".publicaciones");       // seccion de los posts
 
 
 // localStorage: aqui guardo los likes y los guardados
@@ -174,12 +179,13 @@ function crearTarjeta(post) {
     const metricas = document.createElement("div");
     metricas.className = "post-metricas";
 
-    // comentarios: uso innerHTML porque lleva el icono y el numero
+    // boton de comentarios: uso innerHTML porque lleva el icono y el numero
     // con las comillas ` ` puedo meter variables usando ${ }
-    const comentarios = document.createElement("span");
-    comentarios.className = "post-accion";
-    comentarios.innerHTML = `<img src="../../assets/icons/comment.svg" alt="Comments"> ${post.comentarios}`;
-    metricas.appendChild(comentarios);
+    // es un button porque al darle click abre la caja para comentar
+    const btnComentar = document.createElement("button");
+    btnComentar.className = "post-accion btn-comentar";
+    btnComentar.innerHTML = `<img src="../../assets/icons/comment.svg" alt="Comments"> ${post.comentarios}`;
+    metricas.appendChild(btnComentar);
 
     // creo el boton del like, lo que tiene adentro lo pone pintarLike
     const btnLike = document.createElement("button");
@@ -193,6 +199,25 @@ function crearTarjeta(post) {
     acciones.appendChild(metricas);
     acciones.appendChild(btnGuardar);
     cuerpo.appendChild(acciones);
+
+
+    // caja para escribir un comentario, empieza escondida en el css
+    // uso un form para que se envie con el boton Send o con Enter
+    const cajaComentario = document.createElement("form");
+    cajaComentario.className = "caja-comentario";
+
+    const inputComentario = document.createElement("input");
+    inputComentario.type = "text";
+    inputComentario.placeholder = "Write a comment...";
+
+    const btnEnviar = document.createElement("button");
+    btnEnviar.type = "submit";
+    btnEnviar.className = "btn-enviar";
+    btnEnviar.textContent = "Send";
+
+    cajaComentario.appendChild(inputComentario);
+    cajaComentario.appendChild(btnEnviar);
+    cuerpo.appendChild(cajaComentario);
 
     // pinto los botones para que se vea si ya tenian like o estaban guardados
     pintarLike(btnLike, post);
@@ -226,6 +251,33 @@ function crearTarjeta(post) {
         }
         localStorage.setItem(guardadosKey, JSON.stringify(guardados));
         pintarGuardar(btnGuardar, post);
+    });
+    
+    // cuando le doy click al icono de comentarios abro o cierro la caja
+    // toggle pone la clase abierta si no la tiene y la quita si ya la tiene
+    btnComentar.addEventListener("click", () => {
+        cajaComentario.classList.toggle("abierta");
+        inputComentario.focus(); // pongo el cursor en el input para escribir de una
+    });
+
+    // cuando envio el comentario (click en Send o Enter)
+    cajaComentario.addEventListener("submit", (evento) => {
+        // evito que la pagina se recargue
+        evento.preventDefault();
+
+        // si no escribi nada no lo envio
+        if (inputComentario.value.trim() === "") {
+            inputComentario.focus();
+            return;
+        }
+
+        // le sumo 1 a los comentarios y cambio el numero en el boton
+        post.comentarios = post.comentarios + 1;
+        btnComentar.innerHTML = `<img src="../../assets/icons/comment.svg" alt="Comments"> ${post.comentarios}`;
+
+        // limpio el input y cierro la caja
+        inputComentario.value = "";
+        cajaComentario.classList.remove("abierta");
     });
 
     // por ultimo meto la tarjeta completa en el grid del html
@@ -313,6 +365,23 @@ function mostrarPublicaciones() {
     // guardo cuantos posts cumplen el filtro, lo uso en "Load more"
     totalFiltradas = filtradas.length;
 
+    // si busque algo cambio el titulo y muestro cuantos posts encontre
+    if (textoBuscado !== "") {
+        // si es 1 digo "result" y si son varios "results"
+        let palabra = "results";
+        if (filtradas.length === 1) {
+            palabra = "result";
+        }
+
+        tituloPublicaciones.textContent = "Search results";
+        textoResultado.textContent = `${filtradas.length} ${palabra} for "${textoBuscado}"`;
+        resultadoBusqueda.classList.add("visible");
+    } else {
+        // si no hay busqueda dejo todo como al inicio
+        tituloPublicaciones.textContent = "Recent posts";
+        resultadoBusqueda.classList.remove("visible");
+    }
+
     // dejo el boton de "Load more" como al inicio
     btnCargarMas.disabled = false;
     btnCargarMas.textContent = "Load more posts";
@@ -345,6 +414,19 @@ formBuscar.addEventListener("submit", (evento) => {
     textoBuscado = inputBuscar.value.trim().toLowerCase();
     cantidadVisible = cantidadInicial;
     mostrarPublicaciones();
+
+    // bajo la pagina hasta los resultados para que se vea que si busco
+    // scrollIntoView mueve la pantalla hasta ese elemento, smooth es para que baje suave
+    seccionPublicaciones.scrollIntoView({ behavior: "smooth" });
+});
+
+// boton "Clear search": borro la busqueda y vuelven a salir todos los posts
+btnLimpiar.addEventListener("click", () => {
+    inputBuscar.value = "";
+    textoBuscado = "";
+    cantidadVisible = cantidadInicial;
+    mostrarPublicaciones();
+    inputBuscar.focus(); // dejo el cursor en el buscador por si quiero buscar otra cosa
 });
 
 // input pasa cada vez que escribo o borro una letra

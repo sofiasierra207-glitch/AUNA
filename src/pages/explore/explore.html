@@ -17,8 +17,16 @@
     <!-- fuentes compartidas del proyecto (están en assets/fonts) -->
     <link rel="stylesheet" href="../../assets/fonts/fonts.css">
 
+    <!-- css del mini perfil (mi componente): el menu del boton de perfil y el modal de ver mi perfil -->
+    <link rel="stylesheet" href="../../components/mini-profile/mini-profile.css">
+    <link rel="stylesheet" href="../../components/profile/profile.css">
+    <link rel="stylesheet" href="../../components/configuration/configuration.css">
+
     <!-- CSS -->
     <link rel="stylesheet" href="explore.css">
+
+    <!-- css del menú de idioma (componente) -->
+    <link rel="stylesheet" href="../../components/language/language.css">
 
     <!-- css del popup de buscar (componente) -->
     <link rel="stylesheet" href="../../components/search/search.css">
@@ -47,10 +55,21 @@
         <!-- Botones redondos: buscar, perfil e idioma -->
         <div class="header-botones">
             <button class="btn-circulo" id="btn-lupa"><img src="../../assets/icons/search.svg" alt="Search"></button>
-            <button class="btn-circulo"><img src="../../assets/icons/profile.svg" alt="Profile"></button>
-            <button class="btn-circulo"><img src="../../assets/icons/language.svg" alt="Language"></button>
+            <!-- id profile-button: el js del mini perfil busca este boton para abrir el menu -->
+            <button class="btn-circulo" id="profile-button"><img src="../../assets/icons/profile.svg" alt="Profile"></button>
+            <button class="btn-circulo" id="language-button"><img src="../../assets/icons/language.svg" alt="Language"></button>
         </div>
     </header>
+
+    <!-- menu de abajo, solo se ve en celular (igual al de Sofía en Home)
+         active marca la pagina en la que estoy -->
+    <nav class="bottom-nav">
+        <a href="../index/index.html" class="bottom-link"><span class="dot"></span>Home</a>
+        <a href="../explore/explore.html" class="bottom-link active"><span class="dot"></span>Explore</a>
+        <a href="../community/community.html" class="bottom-link"><span class="dot"></span>Community</a>
+        <a href="../favorites/favorites.html" class="bottom-link"><span class="dot"></span>Favorites</a>
+        <a href="../help/help.html" class="bottom-link"><span class="dot"></span>Help</a>
+    </nav>
 
     <main>
 
@@ -96,25 +115,26 @@
             <h2>This week's collections</h2>
 
             <div class="colecciones-lista">
+                <!-- "View collection" lleva a favorites, que es donde estan las colecciones -->
                 <!-- cada tarjeta tiene 2 clases: "coleccion" (forma)
                      y otra para el color de fondo -->
                 <article class="coleccion coleccion-rosa-claro">
                     <h3>Safe routes</h3>
                     <p>48 places verified by users</p>
                     <!-- &nbsp; es un espacio que no se rompe -->
-                    <a href="#">View collection &nbsp;→</a>
+                    <a href="../favorites/favorites.html">View collection &nbsp;→</a>
                 </article>
 
                 <article class="coleccion coleccion-rosa">
                     <h3>Read together</h3>
                     <p>12 active clubs this month</p>
-                    <a href="#">View collection &nbsp;→</a>
+                    <a href="../favorites/favorites.html">View collection &nbsp;→</a>
                 </article>
 
                 <article class="coleccion coleccion-oscura">
                     <h3>Voices that support you</h3>
                     <p>Stories of care and mental health</p>
-                    <a href="#">View collection &nbsp;→</a>
+                    <a href="../favorites/favorites.html">View collection &nbsp;→</a>
                 </article>
             </div>
         </section>
@@ -124,7 +144,15 @@
         <section class="publicaciones">
 
             <div class="publicaciones-titulo">
-                <h2>Recent posts</h2>
+                <!-- id para cambiar el titulo desde el js cuando busco algo -->
+                <h2 id="titulo-publicaciones">Recent posts</h2>
+            </div>
+
+            <!-- resultado de la busqueda, empieza escondido
+                 el js lo muestra con cuantos posts encontro y la palabra que busque -->
+            <div class="resultado-busqueda" id="resultado-busqueda">
+                <p id="texto-resultado"></p>
+                <button type="button" class="btn-limpiar" id="btn-limpiar">Clear search</button>
             </div>
 
             <!-- Este div empieza VACÍO.
@@ -150,8 +178,8 @@
         </div>
 
         <nav class="footer-links">
-            <a href="#">Community</a>
-            <a href="#">Help</a>
+            <a href="../community/community.html">Community</a>
+            <a href="../help/help.html">Help</a>
             <a href="explore.html">Explore</a>
         </nav>
     </footer>
@@ -159,7 +187,13 @@
 
     <!-- primero el js del popup de buscar, asi explore.js ya puede usar abrirBuscar() -->
     <script src="../../components/search/search.js"></script>
+    <script src="../../components/language/language.js"></script>
+
+    <!-- mini perfil (mi componente): crea el menu y el modal, y los abre con el boton de perfil -->
+    <script src="../../components/mini-profile/mini-profile.js"></script>
+    <script src="../../components/profile/profile.js"></script>
+    <script src="../../components/configuration/configuration.js"></script>
     <script src="explore.js"></script>
 </body>
 
-</html>
+</html>

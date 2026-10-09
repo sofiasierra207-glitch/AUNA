@@ -48,14 +48,11 @@ input:focus-visible {
    Header
  */
 
-/* Barra blanca que se queda arriba al bajar */
+/* Barra blanca de arriba; se va al bajar la página */
 header {
     width: 100%;
     background-color: #FFFFFF;
     border-bottom: 1px solid #F1DFE4;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
 }
 
 /* Logo a la izquierda, menú al centro, íconos a la derecha */
@@ -329,13 +326,13 @@ header {
 .professionals-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 24px;
+    gap: 24px 2%;
     margin-bottom: 72px;
 }
 
 /* Tarjeta blanca con todo centrado */
 .professional-card {
-    width: 410px;
+    width: 32%;
     background-color: #FFFFFF;
     border: 1px solid #F1DFE4;
     border-radius: 24px;

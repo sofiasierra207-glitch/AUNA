@@ -116,6 +116,19 @@ h3 {
     width: 22px;
     height: 22px;
 }
+/* el menu de idiomas se ubica con position absolute,
+   por eso la caja de botones tiene que ser position relative:
+   asi el menu sale justo debajo del boton y no en otra parte de la pagina */
+.header-botones {
+    position: relative;
+}
+
+/* boton de idioma rosado mientras el menu esta abierto
+   la clase active se la pone el js del componente */
+.btn-circulo.active {
+    background-color: var(--rosa-suave);
+    border-color: var(--rosa-suave);
+}
 
 
 /* hero */
@@ -435,6 +448,59 @@ h3 {
     height: 15px;
 }
 
+/* rosado cuando paso el mouse por el icono de comentarios */
+.btn-comentar:hover {
+    color: var(--rosa-principal);
+}
+
+/* caja de comentario, empieza escondida
+   width 100% para que ocupe todo el ancho de la tarjeta */
+.caja-comentario {
+    display: none;
+    width: 100%;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+/* cuando el js le pone la clase abierta se muestra */
+.caja-comentario.abierta {
+    display: flex;
+}
+
+/* flex 1 hace que el input ocupe todo el espacio que sobra
+   min-width 0 para que no se salga de la tarjeta */
+.caja-comentario input {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 12px;
+    border: 1px solid var(--borde);
+    border-radius: 999px;
+    background-color: var(--fondo-pagina);
+    font-family: inherit;
+    font-size: 12px;
+    outline: none;
+}
+
+/* borde rosado cuando estoy escribiendo */
+.caja-comentario input:focus {
+    border-color: var(--rosa-principal);
+}
+
+/* boton rosado de Send */
+.btn-enviar {
+    background-color: var(--rosa-principal);
+    color: var(--blanco);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.btn-enviar:hover {
+    opacity: 0.9;
+}
+
+
 .btn-like .corazon {
     font-size: 15px;
 }
@@ -455,6 +521,30 @@ h3 {
 }
 
 /* mensaje cuando no hay resultados, escondido al inicio */
+/* resultado de la busqueda, empieza escondido
+   el js le pone la clase visible cuando busco algo */
+.resultado-busqueda {
+    display: none;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: var(--texto-secundario);
+}
+
+.resultado-busqueda.visible {
+    display: flex;
+}
+
+/* boton de borrar la busqueda, parece un link rosado */
+.btn-limpiar {
+    color: var(--rosa-principal);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
 .sin-resultados {
     display: none;
     text-align: center;
@@ -522,6 +612,14 @@ h3 {
 
 
 /* tablet */
+/* ---------- menu de abajo (celular) ---------- */
+
+/* en computador no se ve, solo aparece en el @media de celular */
+.bottom-nav {
+    display: none;
+}
+
+
 @media (max-width: 1024px) {
 
     /* el menu baja a otra linea */
@@ -660,5 +758,91 @@ h3 {
         align-items: flex-start;
         gap: 20px;
         padding: 32px 16px;
+    }
+}
+
+
+/* ---------- celular: menu abajo como en el figma movil ---------- */
+/* lo pongo al final para que gane sobre los otros @media
+   copie los estilos del menu de abajo de Sofía (index.css) para que se vea igual en todas las paginas */
+@media (max-width: 700px) {
+
+    /* header solo con logo, lupa y perfil */
+    .header {
+        height: 64px;
+        padding: 0 20px;
+        flex-wrap: nowrap;
+    }
+
+    .logo img {
+        height: 36px;
+    }
+
+    /* el menu de arriba y el boton de idioma se esconden
+       el menu pasa abajo */
+    .nav,
+    #language-button {
+        display: none;
+    }
+
+    .header-botones {
+        gap: 8px;
+    }
+
+    .btn-circulo {
+        width: 28px;
+        height: 28px;
+    }
+
+    .btn-circulo img {
+        width: 14px;
+        height: 14px;
+    }
+
+    /* menu fijo pegado abajo de la pantalla
+       position fixed hace que no se mueva al hacer scroll */
+    .bottom-nav {
+        display: flex;
+        justify-content: space-around;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background-color: var(--blanco);
+        border-top: 1px solid var(--borde);
+        padding: 10px 0 14px;
+    }
+
+    /* cada link: un puntico arriba y el texto abajo */
+    .bottom-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        color: var(--texto-secundario);
+        font-size: 12px;
+    }
+
+    .bottom-link .dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: var(--rosa-suave);
+    }
+
+    /* la pagina en la que estoy va en rosado */
+    .bottom-link.active {
+        color: var(--rosa-principal);
+        font-weight: 600;
+    }
+
+    .bottom-link.active .dot {
+        background-color: var(--rosa-principal);
+    }
+
+    /* espacio abajo para que el menu no tape el footer */
+    body {
+        padding-bottom: 64px;
     }
 }

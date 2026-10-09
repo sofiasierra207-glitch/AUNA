@@ -14,6 +14,13 @@
     <link rel="stylesheet" href="favorites.css">
     <!-- css del popup de buscar (componente) -->
     <link rel="stylesheet" href="../../components/search/search.css">
+    <!-- css del menu de idiomas (componente de Sofía) -->
+    <link rel="stylesheet" href="../../components/language/language.css">
+
+    <!-- css del mini perfil (mi componente): el menu del boton de perfil y el modal de ver mi perfil -->
+    <link rel="stylesheet" href="../../components/mini-profile/mini-profile.css">
+    <link rel="stylesheet" href="../../components/profile/profile.css">
+    <link rel="stylesheet" href="../../components/configuration/configuration.css">
 </head>
 
 <body>
@@ -38,10 +45,21 @@
         <!-- botones redondos: buscar, perfil e idioma -->
         <div class="header-botones">
             <button class="btn-circulo" id="btn-lupa"><img src="../../assets/icons/search.svg" alt="Search"></button>
-            <button class="btn-circulo"><img src="../../assets/icons/profile.svg" alt="Profile"></button>
-            <button class="btn-circulo"><img src="../../assets/icons/language.svg" alt="Language"></button>
+            <!-- id profile-button: el js del mini perfil busca este boton para abrir el menu -->
+            <button class="btn-circulo" id="profile-button"><img src="../../assets/icons/profile.svg" alt="Profile"></button>
+            <button class="btn-circulo" id="language-button"><img src="../../assets/icons/language.svg" alt="Language"></button>
         </div>
     </header>
+
+    <!-- menu de abajo, solo se ve en celular (igual al de Sofía en Home)
+         active marca la pagina en la que estoy -->
+    <nav class="bottom-nav">
+        <a href="../index/index.html" class="bottom-link"><span class="dot"></span>Home</a>
+        <a href="../explore/explore.html" class="bottom-link"><span class="dot"></span>Explore</a>
+        <a href="../community/community.html" class="bottom-link"><span class="dot"></span>Community</a>
+        <a href="../favorites/favorites.html" class="bottom-link active"><span class="dot"></span>Favorites</a>
+        <a href="../help/help.html" class="bottom-link"><span class="dot"></span>Help</a>
+    </nav>
 
     <main>
 
@@ -142,7 +160,13 @@
 
     <!-- primero el js del popup de buscar, asi favorites.js ya puede usar abrirBuscar() -->
     <script src="../../components/search/search.js"></script>
+    <script src="../../components/language/language.js"></script>
+
+    <!-- mini perfil (mi componente): crea el menu y el modal, y los abre con el boton de perfil -->
+    <script src="../../components/mini-profile/mini-profile.js"></script>
+    <script src="../../components/profile/profile.js"></script>
+    <script src="../../components/configuration/configuration.js"></script>
     <script src="favorites.js"></script>
 </body>
 
-</html>
+</html>

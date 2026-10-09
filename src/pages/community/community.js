@@ -208,16 +208,14 @@ function showToast(message) {
    Aquí se conectan los componentes de Cami cuando estén listos
 */
 
+// Lupa: abre el componente de búsqueda de Cami
 document.querySelector("#search-button").addEventListener("click", function () {
-    showToast("Search is coming soon");
+    abrirBuscar();
 });
 
-document.querySelector("#profile-button").addEventListener("click", function () {
-    showToast("Your profile menu is coming soon");
-});
-
+// Caja rosada: abre el componente de verificación de Cami
 document.querySelector(".verify-button").addEventListener("click", function () {
-    showToast("The verification form is coming soon");
+    abrirVerificacion();
 });
 
 
