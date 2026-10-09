@@ -339,10 +339,6 @@ document.querySelector("#profile-button").addEventListener("click", function () 
     showToast("Your profile menu is coming soon");
 });
 
-document.querySelector("#language-button").addEventListener("click", function () {
-    showToast("More languages are coming soon");
-});
-
 document.querySelector(".help-button").addEventListener("click", function () {
     showToast("The help request form is coming soon");
 });
