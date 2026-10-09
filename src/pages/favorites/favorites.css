@@ -1,18 +1,3 @@
-/* colores del figma guardados en variables
-   asi uso var(--nombre) en vez de escribir el codigo del color cada vez */
-:root {
-    --rosa-principal: #c2456e;
-    --rosa-suave: #f7d9e3;
-    --rosa-claro: #fdedf1;
-    --fondo-pagina: #fff7f3;
-    --blanco: #ffffff;
-    --borde: #f1dfe4;
-    --borde-boton: #d8ccd0;
-    --texto-principal: #2c1d25;
-    --texto-secundario: #6e5a63;
-    --morado-oscuro: #3b2430;
-}
-
 /* quito los margenes que pone el navegador
    border-box hace que el padding y el borde queden dentro del ancho */
 * {
@@ -23,8 +8,8 @@
 
 body {
     font-family: "Inter", Arial, sans-serif;
-    background-color: var(--fondo-pagina);
-    color: var(--texto-principal);
+    background-color: #fff7f3;
+    color: #2c1d25;
 }
 
 a {
@@ -56,8 +41,8 @@ h3 {
 
 /* flex pone logo, menu y botones en una fila */
 .header {
-    background-color: var(--blanco);
-    border-bottom: 1px solid var(--borde);
+    background-color: #ffffff;
+    border-bottom: 1px solid #f1dfe4;
     height: 96px;
     padding: 0 80px;
     display: flex;
@@ -83,17 +68,17 @@ h3 {
     border-radius: 999px;
     font-size: 14px;
     font-weight: 500;
-    color: var(--texto-secundario);
+    color: #6e5a63;
 }
 
 .nav a:hover {
-    color: var(--rosa-principal);
+    color: #c2456e;
 }
 
 /* la pagina en la que estoy */
 .nav .nav-activo {
-    background-color: var(--rosa-suave);
-    color: var(--rosa-principal);
+    background-color: #f7d9e3;
+    color: #c2456e;
 }
 
 .header-botones {
@@ -106,16 +91,16 @@ h3 {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    border: 1px solid var(--borde-boton);
-    background-color: var(--blanco);
+    border: 1px solid #d8ccd0;
+    background-color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .btn-circulo:hover {
-    background-color: var(--rosa-suave);
-    border-color: var(--rosa-suave);
+    background-color: #f7d9e3;
+    border-color: #f7d9e3;
 }
 
 .btn-circulo img {
@@ -133,8 +118,8 @@ h3 {
 /* boton de idioma rosado mientras el menu esta abierto
    la clase active se la pone el js del componente */
 .btn-circulo.active {
-    background-color: var(--rosa-suave);
-    border-color: var(--rosa-suave);
+    background-color: #f7d9e3;
+    border-color: #f7d9e3;
 }
 
 
@@ -153,7 +138,7 @@ h3 {
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 1.2px;
-    color: var(--rosa-principal);
+    color: #c2456e;
 }
 
 .hero h1 {
@@ -164,7 +149,7 @@ h3 {
 .hero-texto {
     font-size: 16px;
     line-height: 26px;
-    color: var(--texto-secundario);
+    color: #6e5a63;
 }
 
 
@@ -174,8 +159,8 @@ h3 {
    align-self flex-start para que no ocupe todo el ancho */
 .tabs {
     align-self: flex-start;
-    background-color: var(--blanco);
-    border: 1px solid var(--borde);
+    background-color: #ffffff;
+    border: 1px solid #f1dfe4;
     border-radius: 999px;
     padding: 6px;
     display: flex;
@@ -188,20 +173,20 @@ h3 {
     border-radius: 999px;
     font-size: 15px;
     font-weight: 600;
-    color: var(--texto-secundario);
+    color: #6e5a63;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
 .tab:hover {
-    color: var(--rosa-principal);
+    color: #c2456e;
 }
 
 /* pastilla rosada con el numero */
 .tab-numero {
-    background-color: var(--rosa-suave);
-    color: var(--rosa-principal);
+    background-color: #f7d9e3;
+    color: #c2456e;
     font-size: 12px;
     font-weight: 600;
     padding: 2px 8px;
@@ -210,13 +195,13 @@ h3 {
 
 /* tab seleccionada (el js le pone o le quita esta clase) */
 .tab.tab-activa {
-    background-color: var(--rosa-principal);
-    color: var(--blanco);
+    background-color: #c2456e;
+    color: #ffffff;
 }
 
 /* en la tab activa la pastilla se vuelve blanca */
 .tab.tab-activa .tab-numero {
-    background-color: var(--blanco);
+    background-color: #ffffff;
 }
 
 
@@ -264,22 +249,22 @@ h3 {
 
 .coleccion p {
     font-size: 13px;
-    color: var(--texto-secundario);
+    color: #6e5a63;
 }
 
 /* color de fondo de cada coleccion */
 .coleccion-rosa-claro {
-    background-color: var(--rosa-claro);
+    background-color: #fdedf1;
 }
 
 .coleccion-rosa {
-    background-color: var(--rosa-suave);
+    background-color: #f7d9e3;
 }
 
 /* la oscura lleva los textos claros */
 .coleccion-oscura {
-    background-color: var(--morado-oscuro);
-    color: var(--blanco);
+    background-color: #3b2430;
+    color: #ffffff;
 }
 
 .coleccion-oscura p {
@@ -312,7 +297,7 @@ h3 {
    overflow hidden corta la imagen en las esquinas redondas */
 .guardado {
     width: 32%;
-    background-color: var(--blanco);
+    background-color: #ffffff;
     border-radius: 24px;
     overflow: hidden;
 }
@@ -323,7 +308,7 @@ h3 {
     height: 110px;
     object-fit: cover;
     display: block;
-    background-color: var(--rosa-claro);
+    background-color: #fdedf1;
 }
 
 .guardado-cuerpo {
@@ -337,7 +322,7 @@ h3 {
 .guardado-tipo {
     font-size: 11px;
     font-weight: 600;
-    color: var(--rosa-principal);
+    color: #c2456e;
 }
 
 .guardado-nombre {
@@ -348,13 +333,13 @@ h3 {
 .guardado-texto {
     font-size: 12px;
     line-height: 17px;
-    color: var(--texto-secundario);
+    color: #6e5a63;
 }
 
 /* mensaje cuando no hay nada guardado, empieza escondido */
 .sin-resultados {
     display: none;
-    color: var(--texto-secundario);
+    color: #6e5a63;
     padding: 20px 0;
 }
 
@@ -363,21 +348,21 @@ h3 {
 
 /* nombre a la izquierda y links a la derecha */
 .footer {
-    background-color: var(--blanco);
-    border-top: 1px solid var(--borde);
+    background-color: #ffffff;
+    border-top: 1px solid #f1dfe4;
     padding: 40px 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 14px;
-    color: var(--texto-secundario);
+    color: #6e5a63;
 }
 
 .footer-logo {
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 1.5px;
-    color: var(--texto-principal);
+    color: #2c1d25;
     margin-bottom: 6px;
 }
 
@@ -388,7 +373,7 @@ h3 {
 }
 
 .footer-links a:hover {
-    color: var(--rosa-principal);
+    color: #c2456e;
 }
 
 
@@ -445,7 +430,7 @@ h3 {
     }
 
     .coleccion {
-        flex: 1 1 calc(50% - 12px);
+        flex: 1 1 48%;
     }
 
     /* 2 tarjetas por fila */
@@ -587,8 +572,8 @@ h3 {
         left: 0;
         right: 0;
         z-index: 1000;
-        background-color: var(--blanco);
-        border-top: 1px solid var(--borde);
+        background-color: #ffffff;
+        border-top: 1px solid #f1dfe4;
         padding: 10px 0 14px;
     }
 
@@ -598,7 +583,7 @@ h3 {
         flex-direction: column;
         align-items: center;
         gap: 6px;
-        color: var(--texto-secundario);
+        color: #6e5a63;
         font-size: 12px;
     }
 
@@ -606,17 +591,17 @@ h3 {
         width: 5px;
         height: 5px;
         border-radius: 50%;
-        background-color: var(--rosa-suave);
+        background-color: #f7d9e3;
     }
 
     /* la pagina en la que estoy va en rosado */
     .bottom-link.active {
-        color: var(--rosa-principal);
+        color: #c2456e;
         font-weight: 600;
     }
 
     .bottom-link.active .dot {
-        background-color: var(--rosa-principal);
+        background-color: #c2456e;
     }
 
     /* espacio abajo para que el menu no tape el footer
@@ -624,5 +609,24 @@ h3 {
        porque en el body se veia una franja del color de fondo debajo del footer */
     .footer {
         padding-bottom: 96px;
+    }
+}
+
+/* botones redondos del header mas grandes en pantallas grandes */
+@media (min-width: 1360px) {
+
+    /* botones redondos del header mas grandes */
+    .header-botones {
+        gap: 10px;
+    }
+
+    .btn-circulo {
+        width: 58px;
+        height: 58px;
+    }
+
+    .btn-circulo img {
+        width: 24px;
+        height: 24px;
     }
 }
