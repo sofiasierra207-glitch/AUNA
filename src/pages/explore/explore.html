@@ -133,7 +133,15 @@
         <section class="publicaciones">
 
             <div class="publicaciones-titulo">
-                <h2>Recent posts</h2>
+                <!-- id para cambiar el titulo desde el js cuando busco algo -->
+                <h2 id="titulo-publicaciones">Recent posts</h2>
+            </div>
+
+            <!-- resultado de la busqueda, empieza escondido
+                 el js lo muestra con cuantos posts encontro y la palabra que busque -->
+            <div class="resultado-busqueda" id="resultado-busqueda">
+                <p id="texto-resultado"></p>
+                <button type="button" class="btn-limpiar" id="btn-limpiar">Clear search</button>
             </div>
 
             <!-- Este div empieza VACÍO.
