@@ -369,6 +369,22 @@ btnCargarMas.addEventListener("click", () => {
     }
 });
 
+// la lupa del header abre el popup de buscar
+// abrirBuscar() esta en components/search/search.js
+const btnLupa = document.getElementById("btn-lupa");
+btnLupa.addEventListener("click", () => {
+    abrirBuscar();
+});
 
+// si vengo del popup de buscar, leo la palabra que guarde en localStorage
+const busquedaGuardada = localStorage.getItem("aunaBusqueda");
+if (busquedaGuardada) {
+    // la pongo en el buscador y la uso para filtrar
+    inputBuscar.value = busquedaGuardada;
+    textoBuscado = busquedaGuardada.toLowerCase();
+
+    // la borro para que la proxima vez que entre a explore salgan todos los posts
+    localStorage.removeItem("aunaBusqueda");
+}
 // cuando abro la pagina llamo la funcion para que salgan las tarjetas
 mostrarPublicaciones();
