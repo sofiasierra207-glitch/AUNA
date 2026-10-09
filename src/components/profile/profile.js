@@ -118,3 +118,10 @@ profileOverlay.querySelector(".profile-edit").addEventListener("click", function
     closeProfile();
     openSettings();
 });
+
+// Tecla Escape: también cierra la ventana
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        closeProfile();
+    }
+});
