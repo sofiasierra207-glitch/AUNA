@@ -1,11 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Codificación y tamaño adaptable a celular -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUNA</title>
+
+    <!-- Título de la pestaña -->
+    <title>AÚNA · Community</title>
+
+    <!-- Fuentes de AÚNA (Inter y Playfair Display) guardadas en assets -->
+    <link rel="stylesheet" href="../../assets/fonts/fonts.css">
+
+    <!-- Estilos de la página y de los componentes -->
+    <link rel="stylesheet" href="community.css">
+    <link rel="stylesheet" href="../../components/language/language.css">
+
+    <!-- Datos, componentes y JS de la página; defer espera a que cargue el HTML -->
+    <script src="data.js" defer></script>
+    <script src="../../components/language/language.js" defer></script>
+    <script src="community.js" defer></script>
 </head>
+
 <body>
-    
+
+    <!-- ===== Header ===== -->
+    <header>
+
+        <div class="header">
+
+            <!-- Logo que lleva al inicio -->
+            <a href="../index/index.html" class="logo" aria-label="AÚNA home">
+                <img src="../../assets/images/logoauna.png" alt="AÚNA logo">
+            </a>
+
+            <!-- Menú principal; active marca la página actual -->
+            <nav class="main-nav" aria-label="Main navigation">
+                <ul>
+                    <li><a href="../index/index.html" class="nav-link">Home</a></li>
+                    <li><a href="../explore/explore.html" class="nav-link">Explore</a></li>
+                    <li><a href="community.html" class="nav-link active" aria-current="page">Community</a></li>
+                    <li><a href="../favorites/favorites.html" class="nav-link">Favorites</a></li>
+                    <li><a href="../help/help.html" class="nav-link">AÚNA Help</a></li>
+                </ul>
+            </nav>
+
+            <!-- Botones redondos con íconos -->
+            <div class="header-actions">
+
+                <!-- Botón de búsqueda -->
+                <button type="button" class="icon-button" id="search-button" aria-label="Search">
+                    <img src="../../assets/icons/search.svg" alt="">
+                </button>
+
+                <!-- Botón de perfil -->
+                <button type="button" class="icon-button" id="profile-button" aria-label="Profile">
+                    <img src="../../assets/icons/profile.svg" alt="">
+                </button>
+
+                <!-- Botón de idioma -->
+                <button type="button" class="icon-button" id="language-button" aria-label="Change language">
+                    <img src="../../assets/icons/language.svg" alt="">
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- Menú inferior, solo visible en celular -->
+    <nav class="bottom-nav" aria-label="Mobile navigation">
+        <a href="../index/index.html" class="bottom-link"><span class="dot"></span>Home</a>
+        <a href="../explore/explore.html" class="bottom-link"><span class="dot"></span>Explore</a>
+        <a href="community.html" class="bottom-link active" aria-current="page"><span class="dot"></span>Community</a>
+        <a href="../favorites/favorites.html" class="bottom-link"><span class="dot"></span>Favorites</a>
+        <a href="../help/help.html" class="bottom-link"><span class="dot"></span>Help</a>
+    </nav>
+
+
+    <!-- Contenido principal -->
+    <main class="community-page">
+
+        <!-- ===== Introducción ===== -->
+        <section class="community-intro">
+
+            <!-- Columna izquierda: título, texto y filtros -->
+            <div class="intro-content">
+
+                <span class="page-label">COMMUNITY</span>
+
+                <h1><em>Who's</em> behind every piece of advice</h1>
+
+                <p>
+                    Every AÚNA creator and professional goes through verification before posting. Here you can see
+                    their specialty, response time, and what the community thinks.
+                </p>
+
+                <!-- Filtros por especialidad -->
+                <div class="chips filter-chips">
+                    <button type="button" class="chip active" aria-pressed="true">All</button>
+                    <button type="button" class="chip" aria-pressed="false">Psychology</button>
+                    <button type="button" class="chip" aria-pressed="false">Legal</button>
+                    <button type="button" class="chip" aria-pressed="false">Health</button>
+                    <button type="button" class="chip" aria-pressed="false">Finance</button>
+                    <button type="button" class="chip" aria-pressed="false">Creativity</button>
+                </div>
+
+            </div>
+
+            <!-- Columna derecha: caja oscura con los pasos -->
+            <div class="verify-steps">
+                <h2>How we verify</h2>
+                <ol>
+                    <li><span class="step-number">1</span>We review documents and professional profiles with the AÚNA team.</li>
+                    <li><span class="step-number">2</span>We request real references from other users in the network.</li>
+                    <li><span class="step-number">3</span>Annual review and open reports for the whole community.</li>
+                </ol>
+            </div>
+
+        </section>
+
+
+        <!-- ===== Profesionales verificadas ===== -->
+        <section class="professionals">
+
+            <!-- Título y número de perfiles -->
+            <div class="section-heading">
+                <h2>Verified professionals</h2>
+                <span>86 active profiles</span>
+            </div>
+
+            <!-- Tarjetas; js las crea con los datos de data.js -->
+            <div class="professionals-grid"></div>
+
+        </section>
+
+
+        <!-- ===== Círculos abiertos ===== -->
+        <section class="circles">
+
+            <h2>Open circles this week</h2>
+            <p class="circles-subtitle">Small, moderated groups where conversations happen calmly.</p>
+
+            <!-- Filas; js las crea con los datos de data.js -->
+            <div class="circles-list"></div>
+
+        </section>
+
+
+        <!-- ===== Caja para verificarse ===== -->
+        <section class="get-verified">
+
+            <div>
+                <h2>Do you work in health, law, or education?</h2>
+                <p>Apply to get verified and support the community with your experience.</p>
+            </div>
+
+            <button type="button" class="verify-button">I want to get verified</button>
+
+        </section>
+
+    </main>
+
+
+    <!-- Mensaje corto que aparece abajo por unos segundos -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+
+    <!-- ===== Footer ===== -->
+    <footer>
+
+        <!-- Nombre y frase -->
+        <div class="footer-brand">
+            <strong>AÚNA</strong>
+            <p>Made with care so every woman finds her place.</p>
+        </div>
+
+        <!-- Links del pie de página -->
+        <nav class="footer-navigation" aria-label="Footer navigation">
+            <a href="community.html">Community</a>
+            <a href="../help/help.html">Help</a>
+            <a href="../explore/explore.html">Explore</a>
+        </nav>
+
+    </footer>
+
 </body>
+
 </html>
