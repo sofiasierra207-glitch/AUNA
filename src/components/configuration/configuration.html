@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Página para probar el componente solo -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUNA</title>
+    <title>Settings component</title>
+
+    <!-- Fuentes y estilos del componente -->
+    <link rel="stylesheet" href="../../assets/fonts/fonts.css">
+    <link rel="stylesheet" href="configuration.css">
+
+    <!-- Lógica del componente -->
+    <script src="configuration.js" defer></script>
 </head>
+
 <body>
-    
+
+    <!-- Botón de prueba que abre la ventana -->
+    <button type="button" id="test-button">Open settings</button>
+
+    <script>
+        // Botón de prueba que abre la configuración
+        document.querySelector("#test-button").addEventListener("click", function () {
+            openSettings();
+        });
+    </script>
+
 </body>
+
 </html>
