@@ -88,10 +88,12 @@ document.addEventListener("click", (evento) => {
     }
 });
 
-// Settings: por ahora solo cierro el menu
-// aqui se conecta el componente de configuracion cuando este listo
+// Settings: cierro el menu y abro la configuracion
+// openSettings() esta en el componente configuration de Sofía,
+// por eso la pagina tiene que cargar configuration.js antes que este archivo
 document.getElementById("opcion-ajustes").addEventListener("click", () => {
     cerrarMiniPerfil();
+    openSettings();
 });
 
 
@@ -172,10 +174,14 @@ function cerrarPerfil() {
 // "View my profile" abre el modal
 document.getElementById("opcion-ver-perfil").addEventListener("click", abrirPerfil);
 
-// la x y "Edit profile" cierran el modal
-// (edit profile se conecta despues con la configuracion)
+// la x cierra el modal
 perfilFondo.querySelector(".perfil-cerrar").addEventListener("click", cerrarPerfil);
-perfilFondo.querySelector(".perfil-editar").addEventListener("click", cerrarPerfil);
+
+// "Edit profile" cierra mi perfil y abre la configuracion de Sofía para editar los datos
+perfilFondo.querySelector(".perfil-editar").addEventListener("click", () => {
+    cerrarPerfil();
+    openSettings();
+});
 
 // click en el fondo oscuro (afuera de la caja) tambien lo cierra
 perfilFondo.addEventListener("click", (evento) => {
