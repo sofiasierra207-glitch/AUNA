@@ -40,3 +40,10 @@ viewPostButton.addEventListener("click", function () {
         firstPost.scrollIntoView({ behavior: "smooth", block: "center" });
     }
 });
+
+// Tecla Escape: también cierra la ventana
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        closePostedModal();
+    }
+});
