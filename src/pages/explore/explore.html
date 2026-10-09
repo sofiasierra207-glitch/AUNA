@@ -17,6 +17,9 @@
     <!-- fuentes compartidas del proyecto (están en assets/fonts) -->
     <link rel="stylesheet" href="../../assets/fonts/fonts.css">
 
+    <!-- css del mini perfil (mi componente): el menu del boton de perfil y el modal de ver mi perfil -->
+    <link rel="stylesheet" href="../../components/mini-profile/mini-profile.css">
+
     <!-- CSS -->
     <link rel="stylesheet" href="explore.css">
 
@@ -47,7 +50,8 @@
         <!-- Botones redondos: buscar, perfil e idioma -->
         <div class="header-botones">
             <button class="btn-circulo" id="btn-lupa"><img src="../../assets/icons/search.svg" alt="Search"></button>
-            <button class="btn-circulo"><img src="../../assets/icons/profile.svg" alt="Profile"></button>
+            <!-- id profile-button: el js del mini perfil busca este boton para abrir el menu -->
+            <button class="btn-circulo" id="profile-button"><img src="../../assets/icons/profile.svg" alt="Profile"></button>
             <button class="btn-circulo" id="language-button"><img src="../../assets/icons/language.svg" alt="Language"></button>
         </div>
     </header>
@@ -160,6 +164,9 @@
     <!-- primero el js del popup de buscar, asi explore.js ya puede usar abrirBuscar() -->
     <script src="../../components/search/search.js"></script>
     <script src="../../components/language/language.js"></script>
+
+    <!-- mini perfil (mi componente): crea el menu y el modal, y los abre con el boton de perfil -->
+    <script src="../../components/mini-profile/mini-profile.js"></script>
     <script src="explore.js"></script>
 </body>
 
