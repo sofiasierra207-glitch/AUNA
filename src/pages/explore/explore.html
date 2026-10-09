@@ -20,6 +20,9 @@
     <!-- css del mini perfil (mi componente): el menu del boton de perfil y el modal de ver mi perfil -->
     <link rel="stylesheet" href="../../components/mini-profile/mini-profile.css">
 
+    <!-- css de la configuracion (componente de Sofía), se abre desde Settings del mini perfil -->
+    <link rel="stylesheet" href="../../components/configuration/configuration.css">
+
     <!-- CSS -->
     <link rel="stylesheet" href="explore.css">
 
@@ -167,6 +170,9 @@
     <!-- primero el js del popup de buscar, asi explore.js ya puede usar abrirBuscar() -->
     <script src="../../components/search/search.js"></script>
     <script src="../../components/language/language.js"></script>
+
+    <!-- configuracion (componente de Sofía): va antes del mini perfil porque el mini perfil usa openSettings() -->
+    <script src="../../components/configuration/configuration.js"></script>
 
     <!-- mini perfil (mi componente): crea el menu y el modal, y los abre con el boton de perfil -->
     <script src="../../components/mini-profile/mini-profile.js"></script>
