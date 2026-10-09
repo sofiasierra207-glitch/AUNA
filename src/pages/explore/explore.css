@@ -521,6 +521,30 @@ h3 {
 }
 
 /* mensaje cuando no hay resultados, escondido al inicio */
+/* resultado de la busqueda, empieza escondido
+   el js le pone la clase visible cuando busco algo */
+.resultado-busqueda {
+    display: none;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: var(--texto-secundario);
+}
+
+.resultado-busqueda.visible {
+    display: flex;
+}
+
+/* boton de borrar la busqueda, parece un link rosado */
+.btn-limpiar {
+    color: var(--rosa-principal);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
 .sin-resultados {
     display: none;
     text-align: center;

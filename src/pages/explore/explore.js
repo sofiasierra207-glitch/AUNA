@@ -80,6 +80,11 @@ const formBuscar = document.getElementById("form-buscar");        // formulario 
 const inputBuscar = document.getElementById("input-buscar");      // donde se escribe la busqueda
 const botonesFiltro = document.querySelectorAll(".filtro");       // los 7 botones de filtro
 const btnCargarMas = document.getElementById("btn-cargar-mas");   // boton de "Load more posts"
+const tituloPublicaciones = document.getElementById("titulo-publicaciones"); // h2 de "Recent posts"
+const resultadoBusqueda = document.getElementById("resultado-busqueda");     // caja con el resultado
+const textoResultado = document.getElementById("texto-resultado");           // texto de cuantos encontre
+const btnLimpiar = document.getElementById("btn-limpiar");                   // boton de "Clear search"
+const seccionPublicaciones = document.querySelector(".publicaciones");       // seccion de los posts
 
 
 // localStorage: aqui guardo los likes y los guardados
@@ -360,6 +365,23 @@ function mostrarPublicaciones() {
     // guardo cuantos posts cumplen el filtro, lo uso en "Load more"
     totalFiltradas = filtradas.length;
 
+    // si busque algo cambio el titulo y muestro cuantos posts encontre
+    if (textoBuscado !== "") {
+        // si es 1 digo "result" y si son varios "results"
+        let palabra = "results";
+        if (filtradas.length === 1) {
+            palabra = "result";
+        }
+
+        tituloPublicaciones.textContent = "Search results";
+        textoResultado.textContent = `${filtradas.length} ${palabra} for "${textoBuscado}"`;
+        resultadoBusqueda.classList.add("visible");
+    } else {
+        // si no hay busqueda dejo todo como al inicio
+        tituloPublicaciones.textContent = "Recent posts";
+        resultadoBusqueda.classList.remove("visible");
+    }
+
     // dejo el boton de "Load more" como al inicio
     btnCargarMas.disabled = false;
     btnCargarMas.textContent = "Load more posts";
@@ -392,6 +414,19 @@ formBuscar.addEventListener("submit", (evento) => {
     textoBuscado = inputBuscar.value.trim().toLowerCase();
     cantidadVisible = cantidadInicial;
     mostrarPublicaciones();
+
+    // bajo la pagina hasta los resultados para que se vea que si busco
+    // scrollIntoView mueve la pantalla hasta ese elemento, smooth es para que baje suave
+    seccionPublicaciones.scrollIntoView({ behavior: "smooth" });
+});
+
+// boton "Clear search": borro la busqueda y vuelven a salir todos los posts
+btnLimpiar.addEventListener("click", () => {
+    inputBuscar.value = "";
+    textoBuscado = "";
+    cantidadVisible = cantidadInicial;
+    mostrarPublicaciones();
+    inputBuscar.focus(); // dejo el cursor en el buscador por si quiero buscar otra cosa
 });
 
 // input pasa cada vez que escribo o borro una letra
