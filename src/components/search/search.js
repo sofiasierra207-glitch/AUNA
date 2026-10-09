@@ -70,7 +70,8 @@ document.addEventListener("keydown", (evento) => {
 buscarTags.forEach(tag => {
     tag.addEventListener("click", () => {
         buscarInput.value = tag.textContent;
-        buscarInput.focus();
+        // envio la busqueda de una vez, como si presionara Enter
+        buscarForm.requestSubmit();
     });
 });
 
@@ -86,8 +87,24 @@ buscarForm.addEventListener("submit", (evento) => {
         return;
     }
 
-    // guardo lo que busque en localStorage y me voy a explore
-    // en explore leo esta palabra y filtro los posts
-    localStorage.setItem("aunaBusqueda", texto);
-    window.location.href = "../../pages/explore/explore.html";
+    // paso el texto a minusculas para comparar sin importar mayusculas
+    const palabra = texto.toLowerCase();
+
+    // si escribo el nombre de una pagina, voy directo a esa pagina
+    if (palabra === "home") {
+        window.location.href = "../../pages/index/index.html";
+    } else if (palabra === "explore") {
+        window.location.href = "../../pages/explore/explore.html";
+    } else if (palabra === "community") {
+        window.location.href = "../../pages/community/community.html";
+    } else if (palabra === "favorites") {
+        window.location.href = "../../pages/favorites/favorites.html";
+    } else if (palabra === "help" || palabra === "auna help") {
+        window.location.href = "../../pages/help/help.html";
+    } else {
+        // si no es una pagina, guardo lo que busque y me voy a explore
+        // en explore leo esta palabra y filtro los posts
+        localStorage.setItem("aunaBusqueda", texto);
+        window.location.href = "../../pages/explore/explore.html";
+    }
 });

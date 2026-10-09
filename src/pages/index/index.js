@@ -331,16 +331,18 @@ function showToast(message) {
    Aquí se conectan los componentes de Cami cuando estén listos
 */
 
+// Lupa: abre el componente de búsqueda de Cami
 document.querySelector("#search-button").addEventListener("click", function () {
-    showToast("Search is coming soon");
+    abrirBuscar();
 });
 
 document.querySelector("#profile-button").addEventListener("click", function () {
     showToast("Your profile menu is coming soon");
 });
 
+// Botón de AÚNA Help: abre el componente de pedir ayuda de Cami
 document.querySelector(".help-button").addEventListener("click", function () {
-    showToast("The help request form is coming soon");
+    abrirAyuda();
 });
 
 
