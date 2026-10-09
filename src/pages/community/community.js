@@ -213,10 +213,6 @@ document.querySelector("#search-button").addEventListener("click", function () {
     abrirBuscar();
 });
 
-document.querySelector("#profile-button").addEventListener("click", function () {
-    showToast("Your profile menu is coming soon");
-});
-
 // Caja rosada: abre el componente de verificación de Cami
 document.querySelector(".verify-button").addEventListener("click", function () {
     abrirVerificacion();
