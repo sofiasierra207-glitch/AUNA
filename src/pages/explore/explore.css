@@ -841,8 +841,10 @@ h3 {
         background-color: var(--rosa-principal);
     }
 
-    /* espacio abajo para que el menu no tape el footer */
-    body {
-        padding-bottom: 64px;
+    /* espacio abajo para que el menu no tape el footer
+       se lo pongo al footer (que es blanco) y no al body,
+       porque en el body se veia una franja del color de fondo debajo del footer */
+    .footer {
+        padding-bottom: 96px;
     }
 }
