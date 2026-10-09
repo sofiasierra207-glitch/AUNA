@@ -70,5 +70,38 @@ const publicaciones = [
         descripcionImagen: "Hands shaping ceramics",
         comentarios: 33,
         likes: 356
+    },
+    {
+        id: 7,
+        usuario: "@lina.camina",
+        meta: "Wellness Community · 3d ago",
+        tema: "Wellness",
+        texto: "Sunday walk in the park at 8am. We go slow, we talk, and nobody walks alone.",
+        imagen: "../../assets/images/parque.png",
+        descripcionImagen: "Green park with tall trees",
+        comentarios: 24,
+        likes: 198
+    },
+    {
+        id: 8,
+        usuario: "@sofi.lee",
+        meta: "Book club · 4d ago",
+        tema: "Reading",
+        texto: "This month's book is short and sweet. Perfect if you want to start reading again.",
+        imagen: "../../assets/images/libroanimado.png",
+        descripcionImagen: "Illustrated book cover",
+        comentarios: 18,
+        likes: 143
+    },
+    {
+        id: 9,
+        usuario: "@cafe.calma",
+        meta: "Safe place · 5d ago",
+        tema: "Places",
+        texto: "Quiet café with big tables and staff who know the network. Open until 10pm.",
+        imagen: "../../assets/images/cafe-calma.png",
+        descripcionImagen: "Cup of coffee on a table",
+        comentarios: 31,
+        likes: 267
     }
 ];
